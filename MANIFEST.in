@@ -1,0 +1,3 @@
+include chrismoylan/config/deployment.ini_tmpl
+recursive-include chrismoylan/public *
+recursive-include chrismoylan/templates *
