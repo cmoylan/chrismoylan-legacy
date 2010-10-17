@@ -1,97 +1,54 @@
-<%inherit file="base.html" />
 
-% for blog in blogs::
+% for blog in blogs:
   
   <div class="entry">
-    <h2 class="title"> ${h.link_to(
-          str(blog.title),
-          h.url_for(
-            controller=u'journal',
-            action='view',
-            id=unicode(blog.id)
-          )
-        )}
+    <h2 class="title">
+      <a href="#">${blog.title}</a>
+      ${blog.id}
     </h2>
     <span class="meta">
       ${blog.date.strftime("%B %d, %Y")}
     </span>
-    
+
     <div class="content">
     <%  
       # Determine if this entry starts with paragraph tags
       # If it does not, insert closing and ending tags
       # Otherwise print as normal
-      
+
       hasCompleteTags = True 
       firstTagPos = blog.entry.find('<p>',0)
     %>
-    
+
       % if  firstTagPos > 5 or firstTagPos == -1:
         <p>
         <% hasCompleteTags = False %>
       % endif
-    
+
       <% paragraphs = blog.entry.split("</p>") %>
 
       ${h.HTML.literal(paragraphs[0])}
       </p>
 
-      
       % if len(paragraphs) > 1:
       <span class="more-link">
-      ${h.link_to(
-              'Read More',
-              h.url_for(
-                controller=u'journal',
-                action='view',
-                id=unicode(blog.id)
-              )
-            )}
+        <a href="#">some link</a>
       </span>
       % endif
     </div>
-    
-    % if blog.comment_count == 0:
-    ${h.link_to(
-        "Post a Comment",
-        h.url_for(
-            controller=u'journal',
-            action='view',
-            id=unicode(blog.id)
-        )
-    )}
+
+    ##% if blog.comment_count == 0:
+    % if 1 == 1:
+      Post comment link
     % else:
-    ${h.link_to(
-        str(blog.comment_count) + " Comments",
-        h.url_for(
-            controller=u'journal',
-            action='view',
-            id=unicode(blog.id),
-            anchor='comments'
-        )
-    )}
+      Comments link
   % endif
   </div>
 % endfor
-  
-<div class="pager">${c.paginator.pager('$link_previous ~5~ $link_next')}</div>
+ 
+<div class="pager">${blogs.pager('$link_previous ~5~ $link_next')}</div>
 
 % if i == 0:
   <p>No blog entries were found.</p>
 % endif
 
-<%def name="title()">Journal</%def>
-
-<%def name="heading()">
-% if c.selected_tag:
-  <h1>${c.selected_tag}</h1>
-% else:
-  <h1>Journal</h1>  
-% endif
-
-</%def>
-
-<%def name="footer()">
-## Include the parent footer too
-${parent.footer()}
-</%def>

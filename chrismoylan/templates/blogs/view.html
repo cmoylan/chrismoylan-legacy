@@ -1,0 +1,91 @@
+##	controller journal
+##	method view
+##
+
+<%inherit file="base.html" />
+<%namespace file="/derived/comment/fields.html" name="fields" import="*" />
+
+<%def name="title()">${c.blog.title}</%def>
+<%def name="heading()"><h1>${c.blog.title}</h1></%def>
+
+<div class="breadcrumb"><a href="/">Home</a>&nbsp;&nbsp;>>&nbsp;&nbsp;<a href="/journal/index">Journal</a> </div>
+
+% if 'user' in session:
+	<div class="admin">
+		<ul>
+			<li>${h.link_to(
+				'Edit',
+				h.url_for(
+					controller=u'journal',
+					action='edit',
+					id=unicode(c.blog.id)
+				)
+			)}</li>
+			<li>${h.link_to(
+				'Delete',
+				h.url_for(
+					controller=u'journal',
+					action='delete',
+					id=unicode(c.blog.id)
+				)
+			)}</li>
+		</ul>
+	</div>
+% endif;
+
+<div class="entry content"><!--
+	% for paragraph in c.blog.entry.split("\n"):
+	${h.HTML.tag("p", paragraph)}
+	% endfor
+	-->
+  <%  
+    # Determine if this entry starts with paragraph tags
+    # If it does not, insert closing and ending tags
+    # Otherwise print as normal
+    
+    hasCompleteTags = True 
+    firstTagPos = c.blog.entry.find('<p>',0)
+  %>
+  
+  % if  firstTagPos > 5 or firstTagPos == -1:
+    <p>
+    <% hasCompleteTags = False %>
+  % endif
+  
+  ${h.HTML.literal(c.blog.entry)}
+  
+  % if hasCompleteTags is False: 
+    </p>
+  % endif
+</div>
+<div class="view-meta">
+	<p>Posted on ${c.blog.date.strftime("%B %d, %Y")} at ${c.blog.date.strftime("%I:%M %p").lower()}</p>
+</div>
+
+<div class="comments">
+	<a name="comments"></a>
+	% if len(c.comments): 
+		<h2>Comments:</h2>
+		% for comment in c.comments:
+		<fieldset class="comment">
+			<legend>${comment.name}</legend>
+			${comment.content}
+			<div class="meta">${comment.created.strftime("%B %d, %Y")} at ${comment.created.strftime("%I:%M %p").lower()}</div>
+		</fieldset>
+		% endfor
+	
+	% else:
+	<h3 class="empty">No comments have been posted</h3>
+	%endif
+	
+	<h2>Leave a comment:</h2>
+	${h.form_start(h.url_for(blogid=c.blog.id, controller='comment', action='create'), method="post")}
+			${fields.body()}
+			${h.field(field=h.submit(value="Post comment", name='submit'))}
+	${h.form_end()}
+</div>
+
+<%def name="footer()">
+## Include the parent footer too
+${parent.footer()}
+</%def>
