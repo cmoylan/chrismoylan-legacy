@@ -14,11 +14,8 @@ class Comment(Base):
     content = Column(UnicodeText, nullable=False)
     name = Column(Unicode(255), nullable=False)
     email = Column(Unicode(255))
-    created = Column(DateTime, nullable=False, default=now())
+    created = Column(DateTime, nullable=False, default=datetime.now())
         
-    def __init__(self):
-        pass
-    
     def __init__(self, referid, name, content, created, email):
         self.referid = referid
         self.name = name
