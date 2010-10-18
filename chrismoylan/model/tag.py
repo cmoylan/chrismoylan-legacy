@@ -7,13 +7,10 @@ from chrismoylan.model.meta import Base
 
 
 class Tag(Base):
-    __tablename__ = "tag"
+    __tablename__ = 'tag'
     
     id = Column(Integer, primary_key=True)
     name = Column(Unicode(100), nullable=False, unique=True)
-    
-    def __init__(self):
-        pass
     
     def __init__(self, name):
         self.name = name

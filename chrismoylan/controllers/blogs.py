@@ -4,6 +4,8 @@ from pylons import request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect
 import webhelpers.paginate as paginate
 
+#import chrismoylan.lib.helpers as h
+
 from chrismoylan.lib.base import BaseController, render
 from chrismoylan.model.meta import Session
 from chrismoylan.model.blog import Blog
@@ -22,13 +24,12 @@ class BlogsController(BaseController):
         blog_q = Session.query(Blog).order_by(Blog.id.desc())
         blog_paginator = paginate.Page(
             blog_q,
-            page = int(request.params.get('page', 1),
+            page = int(request.params.get('page', 1)),
             items_per_page = 10,
             controller = 'blogs',
             action = 'index',
             )
-        #return render('/blogs/index.html', {'blogs': blog_paginator})
-        return render('blogs/index.html')
+        return render('/blogs/index.html', {'blogs': blog_paginator})
 
     def create(self):
         """POST /blogs: Create a new item"""
@@ -56,10 +57,20 @@ class BlogsController(BaseController):
         #           method='delete')
         # url('blog', id=ID)
 
-    def show(self, id, format='html'):
+    def show(self, id=None, format='html'):
         """GET /blogs/id: Show a specific item"""
         # url('blog', id=ID)
+        if id is None:
+            return redirect(url(controller='blogs', action='index'))
+        blog_q = Session.query(Blog).filter_by(id=int(id)).first()
+        if blog_q is None:
+            abort(404)
+        return render('/blogs/show.html', {'blog': blog_q})
 
     def edit(self, id, format='html'):
         """GET /blogs/id/edit: Form to edit an existing item"""
         # url('edit_blog', id=ID)
+        blog_q = Session.query(Blog).filter_by(id=int(id)).first()
+        if blog_q is None:
+            abort(404)
+        return render('/blogs/edit.html', {'blog': blog_q})

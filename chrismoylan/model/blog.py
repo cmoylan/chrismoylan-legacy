@@ -6,26 +6,29 @@ from sqlalchemy.orm import relation
 from chrismoylan.model.meta import Base
 from datetime import datetime
 
-blogtag_table = Table('blogtag', Base.metadata,
-    Column('blog_id', Integer, ForeignKey(), primary_key=True),
-    Column('tag_id', Integer, ForeignKey(), primary_key=True),
-)
 
 class Blog(Base):
     __tablename__ = 'blog'
-    
+
     id = Column(Integer, primary_key=True)
-    date = Column(DateTime, nullable=False, default=now())
+    date = Column(DateTime, nullable=False, default=datetime.now())
     title = Column(Unicode(255), nullable=False)
     entry = Column(UnicodeText, nullable=False)
-    
+
     comments = relation("Comment", backref="blog", primaryjoin="Blog.id == Comment.referid", cascade="all")
-    tags = relation("Tag", secondary=blogtag_table, backref="blogs")
-    
-    def __init__(self):
-        pass
-    
+    tags = relation("Tag", secondary='blogtag', backref="blogs")
+
     def __init__(self, title, date, entry):
         self.title = title
         self.date = date or datetime.now()
         self.entry = entry
+
+
+class BlogTag(Base):
+    __tablename__ = 'blogtag'
+
+    blog_id = Column(Integer, ForeignKey('blog.id'), primary_key=True)
+    tag_id = Column(Integer, ForeignKey('tag.id'), primary_key=True)
+
+    def __init__(self):
+        pass
