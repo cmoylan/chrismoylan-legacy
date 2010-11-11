@@ -51,3 +51,9 @@ class PagesController(BaseController):
     def edit(self, id, format='html'):
         """GET /pages/id/edit: Form to edit an existing item"""
         # url('edit_page', id=ID)
+        identity = request.environ.get('repoze.who.identity')
+        if identity is None:
+            request.environ['pylons.status_code_redirect'] = True
+            abort(401, 'Not authenticated')
+        else:
+            return 'welcome aboard'
