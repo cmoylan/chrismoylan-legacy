@@ -15,7 +15,8 @@ setup(
     install_requires=[
         "Pylons>=1.0",
         "SQLAlchemy>=0.5",
-        "Mako>=0.3.4"
+        "Mako>=0.3.4",
+        "FormAlchemy>=1.3.4"
     ],
     setup_requires=["PasteScript>=1.6.3"],
     packages=find_packages(exclude=['ez_setup']),
