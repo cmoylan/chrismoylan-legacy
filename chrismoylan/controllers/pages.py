@@ -84,10 +84,17 @@ class PagesController(BaseController):
         #    h.form(url('page', id=ID),
         #           method='delete')
         # url('page', id=ID)
-        print request.params.getall('_method')
-        context = {
-            'id': id,
-        }
+        if id is None:
+            abort(404)
+        page = Session.query(Page).filter_by(id = id).first()
+        if page is None:
+            abort(404)
+        if request.params.get('_method') == 'DELETE':
+            Session.delete(page)
+            Session.commit()
+            context = {'confirm': True}
+        else:
+            context = {'id': id}
         return render('pages/delete.html', context)
 
     def show(self, id, format='html'):
