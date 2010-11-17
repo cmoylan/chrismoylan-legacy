@@ -1,4 +1,9 @@
-<form method="post" action="/pages/update/${page.id}">
-  ${edit_form | n}
+% if page:
+  <form method="post" action="/pages/update/${page.id}">
+% else:
+  <form method="post" action="/pages/create">
+% endif
+    
+  ${page_form | n}
   <input type="submit" value="Save" />
 </form>

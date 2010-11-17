@@ -23,18 +23,31 @@ class PagesController(BaseController):
     # To properly map this controller, ensure your config/routing.py
     # file has a resource setup:
     #     map.resource('page', 'pages')
-    requires_auth = ['new', 'create', 'edit', 'save', 'list', 'delete']
+    requires_auth = ['new', 'create', 'edit', 'update', 'delete'] #list
 
 
     def create(self):
         """POST /pages: Create a new item"""
         # url('pages')
+        create_form = page_form.bind(Page, data=request.POST)
+        if request.POST and create_form.validate():
+            create_form.sync()
+            Session.commit()
+            # TODO figure out what the page id is and redirect to show/id
+            return 'Page created'
+        context = {
+            'page_form': create_form.render()
+        }
+        return render('pages/edit.html', context)
 
     def new(self, format='html'):
         """GET /pages/new: Form to create a new item"""
         # url('new_page')
         # Render edit.html with a blank page object
-        return render('/pages/edit.html')
+        context = {
+            'page_form': page_form.render(),
+        }
+        return render('/pages/edit.html', context)
 
     def update(self, id):
         """PUT /pages/id: Update an existing item"""
@@ -67,6 +80,11 @@ class PagesController(BaseController):
         #    h.form(url('page', id=ID),
         #           method='delete')
         # url('page', id=ID)
+        print request.params.getall('_method')
+        context = {
+            'id': id,
+        }
+        return render('pages/delete.html', context)
 
     def show(self, id, format='html'):
         """GET /pages/id: Show a specific item"""
@@ -90,7 +108,7 @@ class PagesController(BaseController):
             redirect('/pages/new')
         edit_form = page_form.bind(page)
         context = {
-            'edit_form': edit_form.render(),
+            'page_form': edit_form.render(),
             'page': page
         }
         return render('pages/edit.html', context)

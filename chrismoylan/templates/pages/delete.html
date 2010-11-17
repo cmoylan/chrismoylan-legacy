@@ -1,0 +1,10 @@
+% if confirm:
+<p>Page deleted</p>
+
+% else:
+<form method="post" action="/pages/delete/${id}">
+  <p>Are you sure you want to delete this page?</p>
+  <input type="hidden" name="_method" value="DELETE" />
+  <input type="submit" value="Delete!" />
+</form>
+% endif
