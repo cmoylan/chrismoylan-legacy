@@ -12,6 +12,8 @@ class Page(Base):
     title = Column(Unicode(255), default=u'Untitled')
     content = Column(Unicode, nullable=False)
     
-    def __init__(self):
-        pass
+    def __init__(self, *args, **kwargs):
+        if len(kwargs) > 0:
+            self.title = kwargs['title']
+            self.content = kwargs['content']
     

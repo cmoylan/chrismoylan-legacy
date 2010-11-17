@@ -31,10 +31,14 @@ class PagesController(BaseController):
         # url('pages')
         create_form = page_form.bind(Page, data=request.POST)
         if request.POST and create_form.validate():
-            create_form.sync()
+            page_args = {
+                'title': create_form.title.value,
+                'content': create_form.content.value
+            }
+            page = Page(**page_args)
+            Session.add(page)
             Session.commit()
-            # TODO figure out what the page id is and redirect to show/id
-            return 'Page created'
+            redirect('/pages/show/%s' % page.id)
         context = {
             'page_form': create_form.render()
         }
