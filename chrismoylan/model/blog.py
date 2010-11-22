@@ -18,10 +18,11 @@ class Blog(Base):
     comments = relation("Comment", backref="blog", primaryjoin="Blog.id == Comment.referid", cascade="all")
     tags = relation("Tag", secondary='blogtag', backref="blogs")
 
-    def __init__(self, title, date, entry):
-        self.title = title
-        self.date = date or datetime.now()
-        self.entry = entry
+    def __init__(self, *args, **kwargs):
+        if len(kwargs) > 0:
+            self.title = kwargs['title']
+            self.date = kwargs['date'] or datetime.now()
+            self.entry = kwargs['entry']
 
 
 class BlogTag(Base):
