@@ -1,3 +1,6 @@
-${page.title}
-${page.content}
+<%inherit file="/common/base.html" />
+
+<%def name="title()">${page.title}</%def>
+
+${page.content | n}
 ${page.posted}
