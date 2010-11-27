@@ -16,11 +16,11 @@
       </div>
 
       <!--div class="breadcrumb"><a href="/">Home</a>&nbsp;&nbsp;>> </div-->
-      <div class="breadcrumb"><a href="/">Home</a>&nbsp;&nbsp;>> </div>
+      <div class="breadcrumb">${self.breadcrumb()}</div>
       ${self.flash()}
       <div class="content" id="content">
         <!--p><img  src="http://chrismoylan.com/images/page/29.jpg" alt="Mt Rainier" /></p-->
-        <p><img  src="/bridge2.jpg" alt="Mt Rainier" /></p>
+        <!--p><img  src="/bridge2.jpg" alt="Mt Rainier" /></p>
         <p>Welcome! You have reached the website of Christopher Moylan – software developer, Linux enthusiast, computer hobbyist, audiophile, bookworm, aspiring gourmet, amateur rocker, wanderer, thinker...et cetera. That's me in the picture above, hiking at Mount Rainier in 2008.</p>
         <p>If you're looking for my professional qualifications, head over to the <a href="/about/professional">professional</a> section where you can read more about my favorite ways to keep a roof over my head. The <a href="/portfolio">portfolio</a> provides a glimpse of some of the work that I have done recently. For current happenings, feel free to check out the <a href="/journal">journal</a>. I like to write about whatever hobbies and projects are currently occupying my time.</p>
         <p>If you're looking for my professional qualifications, head over to the <a href="/about/professional">professional</a> section where you can read more about my favorite ways to keep a roof over my head. The <a href="/portfolio">portfolio</a> provides a glimpse of some of the work that I have done recently. For current happenings, feel free to check out the <a href="/journal">journal</a>. I like to write about whatever hobbies and projects are currently occupying my time.</p>
@@ -28,11 +28,11 @@
         <p>If you're looking for my professional qualifications, head over to the <a href="/about/professional">professional</a> section where you can read more about my favorite ways to keep a roof over my head. The <a href="/portfolio">portfolio</a> provides a glimpse of some of the work that I have done recently. For current happenings, feel free to check out the <a href="/journal">journal</a>. I like to write about whatever hobbies and projects are currently occupying my time.</p>
         <h3>This is a sub sub heading</h3>
         <p>If you would like to contact me, email works best. I can be reached at <img class="email-link" src="/images/page/email.jpg" alt="My email" /> My <a href="http://github.com/cmoylan">GitHub</a> profile might also be of interest. I'm usually on <a href="http://freenode.net">Freenode</a> hanging out in #pylons.</p>
-        <p>Other than that, have fun browsing the site.</p>
+        <p>Other than that, have fun browsing the site.</p-->
 
         ${next.body()}
       </div>
-      <div class="meta">Page was last updated on September 13, 2010 at 01:25 am</div>
+      <!--div class="meta">Page was last updated on September 13, 2010 at 01:25 am</div-->
 
 
       <div id="footer">
@@ -54,7 +54,8 @@
       <div class="inner">
         <a href="/" id="logo" title="">chrismoylan</a>
         <ul class="primary navigation" id="navigation">
-          <li><a href="/journal" class="selected">journal</a></li>
+          <!--li><a href="/journal" class="selected">journal</a></li-->
+          <li><a href="/journal">journal</a></li>
           <li><a href="/portfolio">projects</a></li>
           <li><a href="/about">about</a></li> 
         </ul>
@@ -69,3 +70,5 @@
 
 <%def name="title()"></%def>
 <%def name="flash()"></%def>
+<%def name="breadcrumb()"><a href="/">Home</a>&nbsp;&nbsp;>> </%def>
+

@@ -1,6 +1,9 @@
 <%inherit file="/common/base.html" />
 
 <%def name="title()">${page.title}</%def>
+<%def name="breadcrumb()">
+  <a href="/">Home</a> >> ${page.title}
+</%def>
 
 ${page.content | n}
-${page.posted}
+<div class="meta">Page was last updated on ${page.posted.strftime("%B %d, %Y")} at ${page.posted.strftime("%I:%M %p").lower()}</div>
