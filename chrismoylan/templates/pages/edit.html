@@ -1,7 +1,9 @@
 <%inherit file="/common/admin.html" />
 
 <%def name="meta()">
-Late updated: ${page.posted.strftime("%B %d, %Y")} at ${page.posted.strftime("%I:%M %p").lower()}
+% if page:
+  Late updated: ${page.posted.strftime("%B %d, %Y")} at ${page.posted.strftime("%I:%M %p").lower()}
+% endif
 </%def>
 
 % if page:
