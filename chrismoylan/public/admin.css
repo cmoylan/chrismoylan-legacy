@@ -36,7 +36,12 @@ p {font-size:18px; line-height:1.3; margin:0 0 20px;}
 a.selected:hover {background:#ddd;}
 
 .breadcrumb {margin:8px 0; font-size:16px;}
-.meta {margin:8px 0; font-size:14px;}
+.meta {margin:8px 0; font-size:14px; padding-left:150px;}
 .inline-menu {text-align:right;}
 .inline-menu li {display:inline;}
 
+.edit div {margin:0 0 15px;}
+.edit label {width:140px; padding:0 10px 0 0; float:left; text-align:right;}
+.edit input {width:500px;}
+.edit textarea {width:500px; height:300px}
+.edit input[type=submit] {width:auto; margin:0 0 0 150px;}
