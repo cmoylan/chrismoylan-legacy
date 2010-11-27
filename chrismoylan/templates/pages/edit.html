@@ -1,3 +1,9 @@
+<%inherit file="/common/admin.html" />
+
+<%def name="meta()">
+Late updated: ${page.posted.strftime("%B %d, %Y")} at ${page.posted.strftime("%I:%M %p").lower()}
+</%def>
+
 % if page:
   <form method="post" action="/pages/update/${page.id}">
 % else:
