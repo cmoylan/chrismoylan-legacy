@@ -15,8 +15,12 @@ from chrismoylan.model.blog import Blog
 log = logging.getLogger(__name__)
 
 blog_form = FieldSet(Blog)
-blod_form.configure(
-    #include = []
+blog_form.configure(
+    include = [
+        blog_form.title.required(),
+        blog_form.date,
+        blog_form.entry.textarea()
+    ]
 )
 
 class BlogsController(BaseController):
@@ -54,7 +58,7 @@ class BlogsController(BaseController):
         context = {
             'blog_form': create_form.render()
         }
-        return render('blogs/edit.html', context)
+        return render('/blogs/edit.html', context)
 
     def new(self, format='html'):
         """GET /blogs/new: Form to create a new item"""

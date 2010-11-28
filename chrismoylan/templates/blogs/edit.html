@@ -1,0 +1,17 @@
+<%inherit file="/common/admin.html" />
+
+<%def name="meta()">
+% if blog:
+  Late updated: ${blog.posted.strftime("%B %d, %Y")} at ${blog.posted.strftime("%I:%M %p").lower()}
+% endif
+</%def>
+
+% if blog:
+  <form method="post" action="/blogs/update/${page.id}">
+% else:
+  <form method="post" action="/blogs/create">
+% endif
+    
+  ${blog_form | n}
+  <input type="submit" value="Save" />
+</form>
