@@ -12,6 +12,7 @@ class PhotosController(BaseController):
     # To properly map this controller, ensure your config/routing.py
     # file has a resource setup:
     #     map.resource('photo', 'photos')
+    requires_auth = ['new', 'create', 'edit', 'update', 'delete'] #list
 
     def index(self, format='html'):
         """GET /photos: All items in the collection"""

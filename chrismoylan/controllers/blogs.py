@@ -1,6 +1,6 @@
 import logging
 
-from formalchemy import FieldSet, Grid
+from formalchemy import FieldSet
 
 from pylons import request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect
@@ -28,6 +28,7 @@ class BlogsController(BaseController):
     # To properly map this controller, ensure your config/routing.py
     # file has a resource setup:
     #     map.resource('blog', 'blogs')
+    requires_auth = ['new', 'create', 'edit', 'update', 'delete'] #list
 
     def index(self, format='html'):
         """GET /blogs: All items in the collection"""
