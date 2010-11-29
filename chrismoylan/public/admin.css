@@ -45,3 +45,4 @@ a.selected:hover {background:#ddd;}
 .edit input {width:500px;}
 .edit textarea {width:500px; height:300px}
 .edit input[type=submit] {width:auto; margin:0 0 0 150px;}
+.edit span input {width:auto;}

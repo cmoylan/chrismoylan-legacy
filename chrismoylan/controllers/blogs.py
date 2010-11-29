@@ -49,7 +49,8 @@ class BlogsController(BaseController):
         if request.POST and create_form.validate():
             blog_args = {
                 'title': create_form.title.value,
-                'content': create_form.content.value
+                'entry': create_form.entry.value,
+                'date': create_form.date.value
             }
             blog = Blog(**blog_args)
             Session.add(blog)
@@ -80,13 +81,13 @@ class BlogsController(BaseController):
             blog = Session.query(Blog).filter_by(id = id).first()
             if blog is None:
                 abort(404)
-            blog_form = page_form.bind(blog, data=request.POST)
+            edit_form = blog_form.bind(blog, data=request.POST)
             if request.POST and edit_form.validate():
-                blog.sync()
+                edit_form.sync()
                 Session.commit()
                 redirect('/blogs/show/%s' % id)
             context = {
-                'blog': blog.render(),
+                'blog': edit_form.render(),
                 'blog': blog
             }
             return render('blogs/edit.html', context)
@@ -135,7 +136,7 @@ class BlogsController(BaseController):
             redirect('/blogs/new')
         edit_form = blog_form.bind(blog)
         context = {
-            'blog_form': blog_form.render(),
+            'blog_form': edit_form.render(),
             'blog': blog
         }
         return render('/blogs/edit.html', context)

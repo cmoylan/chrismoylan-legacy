@@ -1,0 +1,37 @@
+<%inherit file="/common/base.html" />
+
+
+<%def name="title()">${blog.title}</%def>
+<%def name="breadcrumb()">
+Home&nbsp;&nbsp;>>&nbsp;&nbsp;Journal&nbsp;&nbsp;>>&nbsp;&nbsp;${blog.title}
+</%def>
+
+
+<div class="entry content">
+  <p>
+  ${h.HTML.literal(blog.entry)}
+  </p>
+</div>
+<div class="meta">
+  Posted on ${blog.date.strftime("%B %d, %Y")} at ${blog.date.strftime("%I:%M")}
+</div>
+
+<div class="comments">
+  <a name="comments"></a>
+  % if len(blog.comments): 
+    <h2>Comments:</h2>
+    % for comment in blog.comments:
+    <fieldset class="comment">
+      <legend>${comment.name}</legend>
+      ${comment.content}
+      <p class="posted">${comment.created.strftime("%B %d, %Y")} at ${comment.created.strftime("%I:%M")}</p>
+    </fieldset>
+    % endfor
+  
+  % else:
+  <h3 class="empty">No comments have been posted</h3>
+  %endif
+  
+  <h2>Leave a comment:</h2>
+  <!-- TODO comment form here -->
+</div>
