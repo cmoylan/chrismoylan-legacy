@@ -6,8 +6,6 @@ from pylons import request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect
 import webhelpers.paginate as paginate
 
-#import chrismoylan.lib.helpers as h
-
 from chrismoylan.lib.base import BaseController, render
 from chrismoylan.model.meta import Session
 from chrismoylan.model.blog import Blog
@@ -33,9 +31,9 @@ class BlogsController(BaseController):
     def index(self, format='html'):
         """GET /blogs: All items in the collection"""
         # url('blogs')
-        blog_q = Session.query(Blog).order_by(Blog.id.desc())
+        blogs = Session.query(Blog).order_by(Blog.id.desc())
         blog_paginator = paginate.Page(
-            blog_q,
+            blogs,
             page = int(request.params.get('page', 1)),
             items_per_page = 10,
             controller = 'blogs',

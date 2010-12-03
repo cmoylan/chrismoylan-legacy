@@ -1,0 +1,39 @@
+<%inherit file="/common/base.html" />
+
+<%def name="title()">Journal</%def>
+
+<%def name="buildrow(blog, odd=True)">
+    %if odd:
+        <tr class="odd">
+    %else:
+        <tr class="even">
+    % endif
+        <td valign="top">
+          ${blog.id}
+        </td>
+        <td valign="top">
+            ${blog.title}
+        </td>
+        <td>
+          edit
+        </td>
+        <td>
+          baweet
+        </td>
+        </tr>
+</%def>
+
+% if len(blogs):
+  <!--p>${ blogs.pager('$link_first $link_previous $first_item to $last_item of $item_count $link_next $link_last') }</p-->
+  <ul>
+  <% counter=0 %>
+  % for blog in blogs:
+    <li> ${blog.date.strftime("%m/%d/%y")} - <a href="#">${blog.title}</a></li>
+    <% counter += 1 %>
+  % endfor
+  </ul>
+
+  <p>${ blogs.pager('$link_first $link_previous  ~1~  $link_next $link_last') }</p>
+% else:
+  <p>No blogs have yet been created. <a href="#">add one</a></p>
+% endif
