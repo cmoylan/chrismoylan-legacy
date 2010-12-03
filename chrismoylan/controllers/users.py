@@ -10,4 +10,27 @@ log = logging.getLogger(__name__)
 class UsersController(BaseController):
 
     def login(self):
-        return 'serving the login form...'
+        return render('users/login.html')
+
+    def authenticate(self):
+        try:
+            username = request.params['username']
+            password = request.params['password']
+        except KeyError:
+            return None
+        # do some crap to log in...
+        session['user'] = {
+            'id': 'user.id',
+            'username': 'user.username'
+        }
+        session.save()
+        return redirect(session['path_before_login'])
+
+    def logout(self):
+        if 'user' not in session:
+            return redirect('/')
+        else:
+            session.pop('user')
+            session.save()
+            #return redirect('/')
+            return 'logged out'
