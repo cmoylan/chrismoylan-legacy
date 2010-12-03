@@ -14,7 +14,6 @@
       <div class="none">
         Skip to:&nbsp;<a href="#navigation">Navigation</a>
       </div>
-
       <!--div class="breadcrumb"><a href="/">Home</a>&nbsp;&nbsp;>> </div-->
       <div class="breadcrumb">${self.breadcrumb()}</div>
       ${self.flash()}
@@ -41,6 +40,11 @@
           <li><a href="#">projects</a> - </li>
           <li><a href="#">about</a></li>
         </ul>
+        % if 'user' in session:
+        <ul class="inline-menu right font-14">
+          <li><a href="/users/logout">Logout</a></li>
+        </ul>
+        % endif
         <div class="center">
           <a href='http://www.catb.org/hacker-emblem/'>
             <img src='http://chrismoylan.com/css/images/glider-small.png' alt='hacker emblem' border='0' />
