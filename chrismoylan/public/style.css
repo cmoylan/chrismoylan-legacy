@@ -36,6 +36,7 @@ a:hover{text-decoration:underline; /*background:#c6c6c6;*/}
 a:active{}
 
 body{font-family:"Asana-MathRegular", "Palatino", Times, serif; background:#e6e6e6; line-height:1;}
+/*body{font-family:"Gerogia", Times, serif; background:#e6e6e6; line-height:1;}*/
 h1, h2, h3, h4, h5 {font-family:"Palatino", Times, serif; font-weight:normal;*/ color:#222; margin:20px 0;}
 h2, h3, h4, h5 {padding:10px 0; border:1px dotted #bbb; border-width:1px 0;}
 p {font-size:18px; line-height:1.3; margin:0 0 20px;}
@@ -43,7 +44,7 @@ p {font-size:18px; line-height:1.3; margin:0 0 20px;}
 /*----- Page Elements -----*/
 #wrapper {width:750px; padding:10px 0 0; margin:65px auto 0;}
 #header {width:100%; height:65px; position:absolute; top:0; background:#111; font-size:24px;}
-#footer {padding:25px 0; margin:5px 0 0; border-top:1px dotted #666; }
+#footer {padding:10px 0; margin:25px 0 0; border-top:1px dotted #666; }
 
 #logo {display:block; float:left; padding:5px 10px 5px 0; margin:15px 0 0; color:#73ff87; }
 .navigation {list-style:none;}
@@ -54,12 +55,26 @@ p {font-size:18px; line-height:1.3; margin:0 0 20px;}
 .selected {border:1px dotted #eee;}
 a.selected:hover {background:#ddd;}
 
-.breadcrumb {margin:8px 0; font-size:16px;}
-.meta {margin:8px 0; font-size:14px; text-align:right;}
+.breadcrumb {padding:0 0 10px; margin:8px 0 15px; font-size:14px; border-bottom:1px solid #888;}
+.meta {margin:8px 0; font-size:14px; text-align:right; color:#3f3f3f;}
 .inline-menu {text-align:right;}
 .inline-menu li {display:inline;}
 
 .font-14 {font-size:14px;}
+
+/* Journal Styles */
+ul.journal {list-style:none;}
+.journal > li {padding: 4px 5px; line-height:100%; font-size: 18px;}
+.journal > li:hover {background:#ccc;}
+.date {float:right;}
+.pager {text-align:center;}
+.odd {background: #ddd;}
+
+fieldset.comment {margin:0 0 1em; padding:10px 10px 5px; border:1px solid #aaa;}
+.comment legend {padding:0 10px;}
+.posted {text-align:right; padding:5px 0; font-size:14px; color:#3F3F3F;}
+
+.page-header {border-color:#888; border-style:solid;}
 /*--- Journal styles ---*//*
 fieldset.comment{margin:0 0 1em; padding:1em 1em .5em; border:1px solid #666;}
 .comment legend{padding:0 .5em;}
