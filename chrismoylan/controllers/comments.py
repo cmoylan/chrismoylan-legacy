@@ -14,6 +14,9 @@ log = logging.getLogger(__name__)
 comment_form = FieldSet(Comment)
 comment_form.configure(
     include = [
+        comment_form.name,
+        comment_form.email,
+        comment_form.content
     ]
 )
 

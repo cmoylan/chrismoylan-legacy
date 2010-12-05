@@ -16,9 +16,11 @@ class Comment(Base):
     email = Column(Unicode(255))
     created = Column(DateTime, nullable=False, default=datetime.now())
         
-    def __init__(self, referid, name, content, created, email):
-        self.referid = referid
-        self.name = name
-        self.content = content
-        self.created = created or datetime.now()
-        self.email = email or ''
+    #def __init__(self, referid, name, content, created, email):
+    def __init__(self, *args, **kwargs):
+        if len(kwargs) > 0:
+            self.referid = kwargs['referid']
+            self.name = kwargs['name']
+            self.content = kwargs['content']
+            self.created = kwargs['created']or datetime.now()
+            self.email = kwargs['email'] or ''
