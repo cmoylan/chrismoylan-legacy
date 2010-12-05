@@ -1,30 +1,42 @@
+<%!
+    def fixblog(text):
+        if text.find('<p>', 0, 15) == -1:
+            return '<p>' + text + '</p>'
+        else:
+            return text
+%>
+
+
 <%inherit file="/common/base.html" />
 
 
 <%def name="title()">${blog.title}</%def>
 <%def name="breadcrumb()">
-Home&nbsp;&nbsp;>>&nbsp;&nbsp;Journal&nbsp;&nbsp;>>&nbsp;&nbsp;${blog.title}
+<a href="${url(controller='pages', action='show', id='1')}">Home</a>
+&nbsp;>>&nbsp;
+<a href="${url(controller='blogs', action='index')}">Journal</a>
+&nbsp;>>&nbsp;
+${blog.title}
 </%def>
 
-
 <div class="entry content">
-  <p>
-  ${h.HTML.literal(blog.entry)}
-  </p>
+  ##  ${h.HTML.literal(blog.entry)}
+  
+  ${blog.entry | n, fixblog}
 </div>
 <div class="meta">
-  Posted on ${blog.date.strftime("%B %d, %Y")} at ${blog.date.strftime("%I:%M")}
+  Posted on ${blog.date.strftime("%B %d, %Y")} at ${blog.date.strftime("%I:%M %p").lower()}
 </div>
 
 <div class="comments">
   <a name="comments"></a>
   % if len(blog.comments): 
-    <h2>Comments:</h2>
+    <h2 class="page-header">Comments:</h2>
     % for comment in blog.comments:
     <fieldset class="comment">
       <legend>${comment.name}</legend>
       ${comment.content}
-      <p class="posted">${comment.created.strftime("%B %d, %Y")} at ${comment.created.strftime("%I:%M")}</p>
+      <div class="posted">${comment.created.strftime("%B %d, %Y")} at ${comment.created.strftime("%I:%M %p").lower()}</div>
     </fieldset>
     % endfor
   
@@ -32,6 +44,6 @@ Home&nbsp;&nbsp;>>&nbsp;&nbsp;Journal&nbsp;&nbsp;>>&nbsp;&nbsp;${blog.title}
   <h3 class="empty">No comments have been posted</h3>
   %endif
   
-  <h2>Leave a comment:</h2>
+  <h2 class="page-header">Leave a comment:</h2>
   <!-- TODO comment form here -->
 </div>

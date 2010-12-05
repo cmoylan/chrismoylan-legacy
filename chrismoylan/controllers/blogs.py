@@ -47,8 +47,8 @@ class BlogsController(BaseController):
         create_form = blog_form.bind(Blog, data=request.POST)
         if request.POST and create_form.validate():
             blog_args = {
-                'title': create_form.title.value,
-                'entry': create_form.entry.value,
+                'title': create_form.title.value.strip(),
+                'entry': create_form.entry.value.strip(),
                 'date': create_form.date.value
             }
             blog = Blog(**blog_args)
