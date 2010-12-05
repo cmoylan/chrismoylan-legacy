@@ -19,6 +19,19 @@ def make_map(config):
     map.connect('/error/{action}/{id}', controller='error')
 
     # CUSTOM ROUTES HERE
+    # Named pages
+    map.connect('home', '/', controller='pages', action="show", id="1")
+    map.connect('/about', controller='pages', action="show", id="3")
+    map.connect('/about/professional', controller='pages', action="show", id="8")
+    map.connect('/about/programming', controller='pages', action="show", id="4")
+    map.connect('/about/music', controller='pages', action="show", id="7")
+
+    # Journal/Blog
+    map.connect('journal', '/journal', controller='blogs', action='index')
+    map.connect('/journal/{id}', controller='blogs', action='show')
+    map.connect('/journal/{action}/{id}', controller='blogs')
+
+    # TODO add legacy routes so you don't fuck up google ranking
 
     map.connect('/{controller}/{action}')
     map.connect('/{controller}/{action}/{id}')
