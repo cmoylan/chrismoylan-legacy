@@ -9,6 +9,7 @@ import webhelpers.paginate as paginate
 from chrismoylan.lib.base import BaseController, render
 from chrismoylan.model.meta import Session
 from chrismoylan.model.blog import Blog
+from chrismoylan.controllers.comments import comment_form
 
 log = logging.getLogger(__name__)
 
@@ -78,18 +79,21 @@ class BlogsController(BaseController):
         # url('blog', id=ID)
         if id is not None:
             blog = Session.query(Blog).filter_by(id = id).first()
+
             if blog is None:
                 abort(404)
             edit_form = blog_form.bind(blog, data=request.POST)
+
             if request.POST and edit_form.validate():
                 edit_form.sync()
                 Session.commit()
                 redirect('/blogs/show/%s' % id)
-            context = {
+
+            return render('blogs/edit.html', {
                 'blog': edit_form.render(),
                 'blog': blog
-            }
-            return render('blogs/edit.html', context)
+            })
+
 
     def delete(self, id):
         """DELETE /blogs/id: Delete an existing item"""
@@ -113,16 +117,21 @@ class BlogsController(BaseController):
         return render('blogs/delete.html', context)
 
 
-
     def show(self, id=None, format='html'):
         """GET /blogs/id: Show a specific item"""
         # url('blog', id=ID)
         if id is None:
             return redirect(url(controller='blogs', action='index'))
         blog_q = Session.query(Blog).filter_by(id=int(id)).first()
+
         if blog_q is None:
             abort(404)
-        return render('/blogs/show.html', {'blog': blog_q})
+        c.blog = blog_q
+        return render('/blogs/show.html', {
+            'blog': blog_q,
+            'comment_form': comment_form.render()
+        })
+
 
     def edit(self, id, format='html'):
         """GET /blogs/id/edit: Form to edit an existing item"""

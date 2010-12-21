@@ -8,19 +8,18 @@ from datetime import datetime
 
 class Comment(Base):
     __tablename__ = "comment"
-    
+
     id = Column(Integer, primary_key=True)
     referid = Column(Integer, ForeignKey("blog.id"), nullable=False)
     content = Column(UnicodeText, nullable=False)
     name = Column(Unicode(255), nullable=False)
     email = Column(Unicode(255))
     created = Column(DateTime, nullable=False, default=datetime.now())
-        
-    #def __init__(self, referid, name, content, created, email):
+
     def __init__(self, *args, **kwargs):
         if len(kwargs) > 0:
             self.referid = kwargs['referid']
             self.name = kwargs['name']
             self.content = kwargs['content']
-            self.created = kwargs['created']or datetime.now()
+            #self.created = datetime.now()
             self.email = kwargs['email'] or ''

@@ -21,7 +21,7 @@ ${blog.title}
 
 <div class="entry content">
   ##  ${h.HTML.literal(blog.entry)}
-  
+
   ${blog.entry | n, fixblog}
 </div>
 <div class="meta">
@@ -30,7 +30,7 @@ ${blog.title}
 
 <div class="comments">
   <a name="comments"></a>
-  % if len(blog.comments): 
+  % if len(blog.comments):
     <h2 class="page-header">Comments:</h2>
     % for comment in blog.comments:
     <fieldset class="comment">
@@ -39,11 +39,14 @@ ${blog.title}
       <div class="posted">${comment.created.strftime("%B %d, %Y")} at ${comment.created.strftime("%I:%M %p").lower()}</div>
     </fieldset>
     % endfor
-  
+
   % else:
   <h3 class="empty">No comments have been posted</h3>
   %endif
-  
+
   <h2 class="page-header">Leave a comment:</h2>
-  <!-- TODO comment form here -->
+  <form method="post" action="/journal/${blog.id}/comments/create">
+    ${comment_form | n}
+    <input type="submit" value="Post Comment" />
+  </form>
 </div>

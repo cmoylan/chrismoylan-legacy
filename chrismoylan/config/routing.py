@@ -30,6 +30,13 @@ def make_map(config):
     map.connect('journal', '/journal', controller='blogs', action='index')
     map.connect('/journal/{id}', controller='blogs', action='show')
     map.connect('/journal/{action}/{id}', controller='blogs')
+    # Post comments on blog
+    map.connect('/journal/{blogid}/{controller}/{action}',
+        requirements=dict(blogid='\d+', id='\d+')
+    )
+    map.connect('/journal/{blogid}/{controller}/{action}/{id}',
+        requirements=dict(blogid='\d+', id='\d+')
+    )
 
     # TODO add legacy routes so you don't fuck up google ranking
 
