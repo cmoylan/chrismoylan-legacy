@@ -12,7 +12,7 @@
       <li class="even"> 
     % endif
     <a href="${url.current(action='show', id=blog.id)}">${blog.title}</a>
-      <span class="date">${blog.date.strftime("%d %B %Y")}</span>
+      <span class="date">${blog.date.strftime("%d %b %Y")}</span>
     </li>
     <% counter += 1 %>
   % endfor

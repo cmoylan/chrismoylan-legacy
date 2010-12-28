@@ -45,7 +45,7 @@ ${blog.title}
   %endif
 
   <h2 class="page-header">Leave a comment:</h2>
-  <form method="post" action="/journal/${blog.id}/comments/create">
+  <form method="post" class="comment" action="/journal/${blog.id}/comments/create">
     ${comment_form | n}
     <input type="submit" value="Post Comment" />
   </form>

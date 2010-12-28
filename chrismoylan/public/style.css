@@ -76,6 +76,14 @@ fieldset.comment {margin:0 0 1em; padding:10px 10px 5px; border:1px solid #aaa;}
 .comment legend {padding:0 10px;}
 .posted {text-align:right; padding:5px 0; font-size:14px; color:#3F3F3F;}
 
+.comment label {display:block; width:90px; float:left; padding:5px 0 0;}
+.comment input[type=text],
+.comment textarea {display:block; width:400px; margin:0 0 15px; padding:5px; border:2px solid #666; font-size:18px;}
+.comment input[type=submit] {width:auto; margin:0 0 0 90px;}
+.comment textarea {height:140px;}
+.comment input[type=text]:hover,
+.comment textarea:hover {background:#dfffe3;}
+
 .page-header {border-color:#888; border-style:solid;}
 /*--- Journal styles ---*//*
 fieldset.comment{margin:0 0 1em; padding:1em 1em .5em; border:1px solid #666;}
