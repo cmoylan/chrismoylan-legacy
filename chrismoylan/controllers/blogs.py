@@ -1,6 +1,6 @@
 import logging
 
-from formalchemy import FieldSet
+from formalchemy import FieldSet, Field
 
 from pylons import request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect
@@ -126,6 +126,11 @@ class BlogsController(BaseController):
 
         if blog_q is None:
             abort(404)
+
+        comment_form.append(
+            Field(name='captcha').with_metadata(
+                instructions='What color is the grass? (hint: green)'
+        ))
         c.blog = blog_q
         return render('/blogs/show.html', {
             'blog': blog_q,

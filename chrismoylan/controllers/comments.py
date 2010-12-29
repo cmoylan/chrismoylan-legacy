@@ -16,7 +16,9 @@ comment_form = FieldSet(Comment)
 comment_form.configure(
     include = [
         comment_form.name.required(),
-        comment_form.email.required(),
+        comment_form.email
+                    .required()
+                    .with_metadata(instructions='Used to help prevent spam but will not be published'),
         comment_form.content.textarea().required()
     ]
 )
@@ -31,6 +33,10 @@ class CommentsController(BaseController):
         """POST /comments: Create a new item"""
         # url('comments')
         create_form = comment_form.bind(Comment, data=request.POST)
+
+        # Test captcha
+        if create_form.captcha.value.strip().lowercase() == 'green':
+            return 'yesss'
 
         if request.POST and create_form.validate():
             comment_args = {

@@ -76,13 +76,16 @@ fieldset.comment {margin:0 0 1em; padding:10px 10px 5px; border:1px solid #aaa;}
 .comment legend {padding:0 10px;}
 .posted {text-align:right; padding:5px 0; font-size:14px; color:#3F3F3F;}
 
-.comment label {display:block; width:90px; float:left; padding:5px 0 0;}
-.comment input[type=text],
-.comment textarea {display:block; width:400px; margin:0 0 15px; padding:5px; border:2px solid #666; font-size:18px;}
-.comment input[type=submit] {width:auto; margin:0 0 0 90px;}
-.comment textarea {height:140px;}
-.comment input[type=text]:hover,
-.comment textarea:hover {background:#dfffe3;}
+.comment-form div {margin:0 0 15px;}
+.comment-form label {display:block; width:90px; float:left; padding:10px 0 0;}
+.comment-form label:after {content:":"}
+.comment-form .instructions {display:block; padding:5px 0 5px 90px;}
+.comment-form input[type=text],
+.comment-form textarea {display:block; width:400px; padding:5px; border:2px solid #666; font-size:18px;}
+.comment-form input[type=submit] {width:auto; margin:0 0 0 90px;}
+.comment-form textarea {height:200px;}
+.comment-form input[type=text]:hover,
+.comment-form textarea:hover {background:#dfffe3;}
 
 .page-header {border-color:#888; border-style:solid;}
 /*--- Journal styles ---*//*
