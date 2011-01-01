@@ -11,25 +11,25 @@ log = logging.getLogger(__name__)
 
 class UsersController(BaseController):
 
-    def new(self):
-        return render('users/new.html')
+    #def new(self):
+    #    return render('users/new.html')
 
-    @restrict('POST')
-    def create(self):
-        try:
-            username = request.params['username']
-            pass1 = request.params['password']
-            pass2 = request.params['password2']
-        except KeyError:
-            return "Fail"
+    #@restrict('POST')
+    #def create(self):
+    #    try:
+    #        username = request.params['username']
+    #        pass1 = request.params['password']
+    #        pass2 = request.params['password2']
+    #    except KeyError:
+    #        return "Fail"
 
-        if pass1 == pass2:
-            user = User(username, pass1)
-            Session.add(user)
-            Session.commit()
-            return '%s created' % username
-        else:
-            return "Passwords did not match"
+    #    if pass1 == pass2:
+    #        user = User(username, pass1)
+    #        Session.add(user)
+    #        Session.commit()
+    #        return '%s created' % username
+    #    else:
+    #        return "Passwords did not match"
 
     def login(self):
         return render('users/login.html')
