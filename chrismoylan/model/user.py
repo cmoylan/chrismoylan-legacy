@@ -1,5 +1,7 @@
 """The model for the users"""
 
+import hashlib
+
 from sqlalchemy import Table, Column, ForeignKey
 from sqlalchemy.types import Integer, Unicode, UnicodeText, DateTime, Boolean
 from sqlalchemy.orm import relation
@@ -16,4 +18,8 @@ class User(Base):
 
     def __init__(self, username, password):
         self.username = username
-        self.password = password
+        self.password = self.hash(password)
+
+    @staticmethod
+    def hash(password):
+        return hashlib.md5(password).hexdigest()

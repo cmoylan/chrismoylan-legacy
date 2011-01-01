@@ -1,0 +1,22 @@
+<%inherit file="/common/admin.html" />
+
+<%def name="title()">Create User</%def>
+
+
+<form method="post" action="/users/create" class="edit">
+  <div>
+    <label for="username">Username</label>
+    <input type="text" name="username" />
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input type="password" name="password" />
+  </div>
+  <div>
+    <label for="password">Confirm Password</label>
+    <input type="password" name="password2" />
+  </div>
+  <div>
+    <input type="submit" value="Create" />
+  </div>
+</form>
