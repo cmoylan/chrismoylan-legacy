@@ -1,6 +1,12 @@
 <%inherit file="/common/base.html" />
 
 <%def name="title()">Journal</%def>
+<%def name="breadcrumb()">
+<a href="${url(controller='pages', action='show', id='1')}">Home</a>
+&nbsp;>>&nbsp;
+Journal
+</%def>
+
 
 % if len(blogs):
   <ul class="journal">
