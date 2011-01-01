@@ -25,10 +25,10 @@ def make_map(config):
 
     # Named pages
     map.connect('home', '/', controller='pages', action="show", id="1")
-    map.connect('/about', controller='pages', action="show", id="3")
-    map.connect('/about/professional', controller='pages', action="show", id="8")
-    map.connect('/about/programming', controller='pages', action="show", id="4")
-    map.connect('/about/music', controller='pages', action="show", id="7")
+    map.connect('about', '/about', controller='pages', action="show", id="3")
+    map.connect('professional', '/about/professional', controller='pages', action="show", id="8")
+    map.connect('programming', '/about/programming', controller='pages', action="show", id="4")
+    map.connect('music', '/about/music', controller='pages', action="show", id="7")
 
     # Journal/Blog
     map.connect('journal', '/journal', controller='blogs', action='index')
