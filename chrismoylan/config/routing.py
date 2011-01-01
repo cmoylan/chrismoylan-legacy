@@ -19,6 +19,10 @@ def make_map(config):
     map.connect('/error/{action}/{id}', controller='error')
 
     # CUSTOM ROUTES HERE
+    # User functions
+    map.connect('login', '/login', controller='users', action='login')
+    map.connect('logout', '/logout', controller='users', action='logout')
+
     # Named pages
     map.connect('home', '/', controller='pages', action="show", id="1")
     map.connect('/about', controller='pages', action="show", id="3")
