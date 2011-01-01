@@ -4,6 +4,7 @@ from formalchemy import FieldSet
 
 from pylons import request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect
+from pylons.decorators.rest import restrict
 
 from chrismoylan.lib.base import BaseController, render
 from chrismoylan.model.meta import Session
@@ -29,6 +30,7 @@ class CommentsController(BaseController):
     # file has a resource setup:
     #     map.resource('comment', 'comments')
 
+    @restrict('POST')
     def create(self, blogid):
         """POST /comments: Create a new item"""
         # url('comments')

@@ -5,6 +5,7 @@ from datetime import datetime
 
 from pylons import request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect
+from pylons.decorators.rest import restrict
 
 from chrismoylan.lib.base import BaseController, Session, render
 from chrismoylan.model.page import Page
@@ -26,7 +27,7 @@ class PagesController(BaseController):
     #     map.resource('page', 'pages')
     requires_auth = ['new', 'create', 'edit', 'update', 'delete'] #list
 
-
+    @restrict('POST')
     def create(self):
         """POST /pages: Create a new item"""
         # url('pages')
@@ -54,6 +55,7 @@ class PagesController(BaseController):
         }
         return render('/pages/edit.html', context)
 
+    @restrict('POST')
     def update(self, id):
         """PUT /pages/id: Update an existing item"""
         # Forms posted to this method should contain a hidden field:
@@ -77,6 +79,7 @@ class PagesController(BaseController):
             }
             return render('pages/edit.html', context)
 
+    @restrict('POST')
     def delete(self, id):
         """DELETE /pages/id: Delete an existing item"""
         # Forms posted to this method should contain a hidden field:

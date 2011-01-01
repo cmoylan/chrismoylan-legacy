@@ -4,6 +4,7 @@ from formalchemy import FieldSet, Field
 
 from pylons import request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect
+from pylons.decorators.rest import restrict
 import webhelpers.paginate as paginate
 
 from chrismoylan.lib.base import BaseController, render
@@ -42,6 +43,7 @@ class BlogsController(BaseController):
         )
         return render('/blogs/index.html', {'blogs': blog_paginator})
 
+    @restrict('POST')
     def create(self):
         """POST /blogs: Create a new item"""
         # url('blogs')
@@ -69,6 +71,7 @@ class BlogsController(BaseController):
         }
         return render('/blogs/edit.html', context)
 
+    @restrict('POST')
     def update(self, id):
         """PUT /blogs/id: Update an existing item"""
         # Forms posted to this method should contain a hidden field:
@@ -94,7 +97,7 @@ class BlogsController(BaseController):
                 'blog': blog
             })
 
-
+    @restrict('POST')
     def delete(self, id):
         """DELETE /blogs/id: Delete an existing item"""
         # Forms posted to this method should contain a hidden field:
