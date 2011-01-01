@@ -32,7 +32,7 @@ class BlogsController(BaseController):
     def index(self, format='html'):
         """GET /blogs: All items in the collection"""
         # url('blogs')
-        blogs = Session.query(Blog).order_by(Blog.id.desc())
+        blogs = Session.query(Blog).order_by(Blog.date.desc())
         blog_paginator = paginate.Page(
             blogs,
             page = int(request.params.get('page', 1)),
