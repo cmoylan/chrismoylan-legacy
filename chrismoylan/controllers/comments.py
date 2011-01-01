@@ -36,7 +36,7 @@ class CommentsController(BaseController):
 
         # captcha
         if create_form.captcha.value.strip().lower() != 'green':
-            return 'captcha error'
+            return render('/comments/error.html')
 
         if request.POST and create_form.validate():
             comment_args = {
