@@ -7,7 +7,6 @@ from paste.deploy.converters import asbool
 from pylons.middleware import ErrorHandler, StatusCodeRedirect
 from pylons.wsgiapp import PylonsApp
 from routes.middleware import RoutesMiddleware
-from repoze.who.config import make_middleware_with_config as make_who_with_config
 
 from chrismoylan.config.environment import load_environment
 
