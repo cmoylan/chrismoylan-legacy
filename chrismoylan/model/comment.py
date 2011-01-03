@@ -13,7 +13,7 @@ class Comment(Base):
     referid = Column(Integer, ForeignKey("blog.id"), nullable=False)
     content = Column(UnicodeText, nullable=False)
     name = Column(Unicode(255), nullable=False)
-    email = Column(Unicode(255))
+    email = Column(Unicode(255), nullable=False)
     created = Column(DateTime, nullable=False)
 
     def __init__(self, *args, **kwargs):

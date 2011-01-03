@@ -43,6 +43,7 @@ class BlogsController(BaseController):
         )
         return render('/blogs/index.html', {'blogs': blog_paginator})
 
+
     @restrict('POST')
     def create(self):
         """POST /blogs: Create a new item"""
@@ -71,6 +72,7 @@ class BlogsController(BaseController):
         }
         return render('/blogs/edit.html', context)
 
+
     @restrict('POST')
     def update(self, id):
         """PUT /blogs/id: Update an existing item"""
@@ -96,6 +98,7 @@ class BlogsController(BaseController):
                 'blog': edit_form.render(),
                 'blog': blog
             })
+
 
     @restrict('POST')
     def delete(self, id):
@@ -125,16 +128,18 @@ class BlogsController(BaseController):
         # url('blog', id=ID)
         if id is None:
             return redirect(url(controller='blogs', action='index'))
+
         blog_q = Session.query(Blog).filter_by(id=int(id)).first()
 
         if blog_q is None:
+            # TODO FLash an alert, redirect to index
             abort(404)
 
         comment_form.append(
-            Field(name='captcha').with_metadata(
+            Field(name='captcha').required().with_metadata(
                 instructions='What color is the grass? (hint: green)'
         ))
-        c.blog = blog_q
+        #c.blog = blog_q
         return render('/blogs/show.html', {
             'blog': blog_q,
             'comment_form': comment_form.render()

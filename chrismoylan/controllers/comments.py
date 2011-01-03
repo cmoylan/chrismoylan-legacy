@@ -16,11 +16,11 @@ log = logging.getLogger(__name__)
 comment_form = FieldSet(Comment)
 comment_form.configure(
     include = [
-        comment_form.name.required(),
-        comment_form.email
-                    .required()
-                    .with_metadata(instructions='Used to help prevent spam but will not be published'),
-        comment_form.content.textarea().required()
+        comment_form.name,
+        comment_form.email.with_metadata(
+            instructions='Used to help prevent spam but will not be published'
+        ),
+        comment_form.content.textarea()
     ]
 )
 
@@ -36,11 +36,11 @@ class CommentsController(BaseController):
         # url('comments')
         create_form = comment_form.bind(Comment, data=request.POST)
 
-        # captcha
-        if create_form.captcha.value.strip().lower() != 'green':
-            return render('/comments/error.html')
+        if create_form.validate():
+            # Validate captcha
+            if create_form.captcha.value.strip().lower() != 'green':
+                return render('/comments/error.html')
 
-        if request.POST and create_form.validate():
             comment_args = {
                 'referid': blogid,
                 'name': create_form.name.value.strip(),
@@ -52,7 +52,8 @@ class CommentsController(BaseController):
             Session.commit()
             redirect('/journal/%s' % blogid)
 
-        blog = Session.query(Blog).filter_by(id=int(blogid)).first()
+        blog = Session.query(Blog).filter_by(id = int(blogid)).first()
+
         return render('/blogs/show.html', {
             'blog': blog,
             'comment_form': create_form.render()
