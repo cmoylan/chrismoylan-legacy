@@ -14,12 +14,12 @@ class Comment(Base):
     content = Column(UnicodeText, nullable=False)
     name = Column(Unicode(255), nullable=False)
     email = Column(Unicode(255))
-    created = Column(DateTime, nullable=False, default=datetime.now())
+    created = Column(DateTime, nullable=False)
 
     def __init__(self, *args, **kwargs):
         if len(kwargs) > 0:
             self.referid = kwargs['referid']
             self.name = kwargs['name']
             self.content = kwargs['content']
-            #self.created = datetime.now()
+            self.created = datetime.now()
             self.email = kwargs['email'] or ''

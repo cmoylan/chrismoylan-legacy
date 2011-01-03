@@ -58,22 +58,6 @@ class CommentsController(BaseController):
             'comment_form': create_form.render()
         })
 
-        #Check to make sure it's legit
-        #if str(self.form_result['captcha']) != "green":
-        #  session['flash'] = 'You got the grass question wrong, hit back and try again.'
-        #  session.save()
-        #  return redirect_to(request.referrer)
-
-        # Add the new comment to the database
-        #comment = model.Comment()
-        #for k, v in self.form_result.items():
-        #    setattr(comment, k, v)
-        #comment.referid = c.blog.id
-        #meta.Session.save(comment)
-        #meta.Session.commit()
-        # Issue an HTTP redirect
-        #return redirect_to(blogid=c.blog.id, controller='comment', action='view', id=comment.id)
-
 
     def new(self, format='html'):
         """GET /comments/new: Form to create a new item"""
