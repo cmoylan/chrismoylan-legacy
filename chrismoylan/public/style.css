@@ -85,7 +85,7 @@ ul.journal {list-style:none;}
 .pager {text-align:center;}
 .odd {background: #ddd;}
 
-fieldset.comment {margin:0 0 1em; padding:10px 10px 5px; border:1px solid #aaa; line-height:1.1;}
+fieldset.comment {margin:0 0 1em; padding:10px 10px 5px; border:1px solid #aaa; line-height:1.5;}
 .comment legend {padding:0 10px;}
 .posted {text-align:right; padding:5px 0; font-size:14px; color:#3F3F3F;}
 
