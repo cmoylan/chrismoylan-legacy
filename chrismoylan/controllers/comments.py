@@ -21,7 +21,8 @@ comment_form.configure(
             instructions='Used to help prevent spam but will not be published'
         ),
         comment_form.content.textarea()
-    ]
+    ],
+    focus = False
 )
 
 class CommentsController(BaseController):
