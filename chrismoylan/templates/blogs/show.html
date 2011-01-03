@@ -26,8 +26,7 @@ ${blog.title}
   Posted on ${blog.date.strftime("%B %d, %Y")} at ${blog.date.strftime("%I:%M %p").lower()}
 </div>
 
-<div class="comments">
-  <a name="comments"></a>
+<div id="comments" class="comments">
   % if len(blog.comments):
     <h2 class="page-header">Comments:</h2>
     % for comment in blog.comments:
