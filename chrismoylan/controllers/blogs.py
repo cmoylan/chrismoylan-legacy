@@ -139,7 +139,7 @@ class BlogsController(BaseController):
             Field(name='captcha').required().with_metadata(
                 instructions='What color is the grass? (hint: green)'
         ))
-        #c.blog = blog_q
+
         return render('/blogs/show.html', {
             'blog': blog_q,
             'comment_form': comment_form.render()

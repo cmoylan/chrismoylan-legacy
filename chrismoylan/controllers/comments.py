@@ -51,9 +51,18 @@ class CommentsController(BaseController):
             comment = Comment(**comment_args)
             Session.add(comment)
             Session.commit()
+
+            session['flash'] = 'Great success! Your comment was posted.'
+            session['flash_class'] = 'success'
+            session.save()
+
             redirect('/journal/%s' % blogid)
 
         blog = Session.query(Blog).filter_by(id = int(blogid)).first()
+
+        session['flash'] = 'There was a problem with your comment.'
+        session['flash_class'] = 'fail'
+        session.save()
 
         return render('/blogs/show.html', {
             'blog': blog,
