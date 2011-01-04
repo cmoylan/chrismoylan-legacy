@@ -46,7 +46,7 @@
     <!-- Position atop content -->
     <div id="header">
       <div class="inner">
-        <!--a href="${url(controller='pages', action='show', id='1')}" id="logo" title="">chrismoylan</a-->
+##        <!--a href="${url(controller='pages', action='show', id='1')}" id="logo" title="">chrismoylan</a-->
         <a href="${url('home')}" id="logo" title="">chrismoylan</a>
         <ul class="primary navigation" id="navigation">
           <!--li><a href="/journal" class="selected">journal</a></li-->
@@ -67,9 +67,17 @@
 <%def name="title()"></%def>
 <%def name="flash()">
   % if session.has_key('flash'):
-    <div id="flash"><p>${session.get('flash')}</p></div>
+    % if session.has_key('flash_class'):
+      <div id="flash" class="${session.get('flash_class')}">
+    % else:
+      <div id="flash">
+    % endif
+
+    <p>${session.get('flash')}</p></div>
     <%
       del session['flash']
+      if session.has_key('flash_class'):
+          del session['flash_class']
       session.save()
     %>
   % endif

@@ -73,7 +73,10 @@ a.selected:hover {background:#ddd;}
 .meta {margin:8px 0; font-size:14px; text-align:right; color:#3f3f3f; clear:both;}
 .inline-menu {text-align:right;}
 .inline-menu li {display:inline;}
-#flash {border:1px solid yellow; background:#fff8ab; margin:15px 0; padding:20px 15px 0;}
+#flash {border:2px solid yellow; background:#fff8ab; margin:15px 0; padding:4px 14px;}
+#flash.success {border-color:green; background:#8eff88;}
+#flash.fail {border-color:red; background:#ffa5a5;}
+#flash p {margin:0;}
 
 .font-14 {font-size:14px;}
 
