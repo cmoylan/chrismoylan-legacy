@@ -1,10 +1,17 @@
 <%!
+    import markupsafe
+
     def fixblog(text):
         if text.find('<p>', 0, 15) == -1:
             return '<p>' + text + '</p>'
         else:
             return text
+
+    def fixcomment(text):
+        comment = str(markupsafe.escape(text))
+        return comment.replace("\n", "<br />")
 %>
+
 
 
 <%inherit file="/common/base.html" />
@@ -32,7 +39,7 @@ ${blog.title}
     % for comment in blog.comments:
     <fieldset class="comment">
       <legend>${comment.name}</legend>
-      ${comment.content}
+      ${comment.content | n, fixcomment}
       <div class="posted">${comment.created.strftime("%B %d, %Y")} at ${comment.created.strftime("%I:%M %p").lower()}</div>
     </fieldset>
     % endfor
