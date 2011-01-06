@@ -1,9 +1,9 @@
 """The model for the blog/journal"""
 
-from sqlalchemy import Table, Column, ForeignKey
+from sqlalchemy import Table, Column, ForeignKey, desc
 from sqlalchemy.types import Integer, Unicode, UnicodeText, DateTime, Boolean
 from sqlalchemy.orm import relation
-from chrismoylan.model.meta import Base
+from chrismoylan.model.meta import Base, Session
 from datetime import datetime
 
 
@@ -24,6 +24,11 @@ class Blog(Base):
             self.date = kwargs['date'] or datetime.now()
             self.entry = kwargs['entry']
 
+    def next(self):
+        return Session.query(Blog).filter(Blog.id > self.id).order_by(Blog.id).first()
+
+    def prev(self):
+        return Session.query(Blog).filter(Blog.id < self.id).order_by(desc(Blog.id)).first()
 
 class BlogTag(Base):
     __tablename__ = 'blogtag'
