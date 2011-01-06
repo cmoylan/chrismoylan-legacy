@@ -10,6 +10,7 @@
 
   <body>
     <div id="wrapper">
+      ${self.top()}
       <h1>${self.title()}</h1>
       <div class="none">
         Skip to:&nbsp;<a href="#navigation">Navigation</a>
@@ -37,7 +38,7 @@
         % endif
         <div class="center">
           <a href='http://www.catb.org/hacker-emblem/'>
-            <img src='http://files.chrismoylan.com/images/page/glider-small.png' alt='hacker emblem' border='0' />
+            <img src='http://files.chrismoylan.com/images/page/glider-small.png' alt='hacker emblem' id="hacker-emblem" />
           </a>
         </div>
       </div>
@@ -64,6 +65,7 @@
   </body>
 </html>
 
+<%def name="top()"></%def>
 <%def name="title()"></%def>
 <%def name="flash()">
   % if session.has_key('flash'):
