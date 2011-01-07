@@ -37,7 +37,7 @@ class BlogsController(BaseController):
         blog_paginator = paginate.Page(
             blogs,
             page = int(request.params.get('page', 1)),
-            items_per_page = 10,
+            items_per_page = 20,
             controller = 'blogs',
             action = 'index',
         )
