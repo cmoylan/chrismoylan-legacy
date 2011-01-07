@@ -42,6 +42,10 @@
           </a>
         </div>
       </div>
+      <!-- Position aside content -->
+      % if self.sidebar():
+        ${self.sidebar()}
+      % endif
     </div> <!-- End Wrapper -->
 
     <!-- Position atop content -->
@@ -52,7 +56,6 @@
         <ul class="primary navigation" id="navigation">
           <!--li><a href="/journal" class="selected">journal</a></li-->
           <li><a href="${url('journal')}">journal</a></li>
-          <li><a href="${url('music')}">music</a></li>
           <!--li><a href="#">projects</a></li-->
           <li><a href="${url('about')}">about</a></li> 
         </ul>
@@ -61,6 +64,7 @@
         </div>
       </div>
     </div>
+
 
   </body>
 </html>
@@ -85,4 +89,5 @@
   % endif
 </%def>
 <%def name="breadcrumb()"><a href="/">Home</a>&nbsp;&nbsp;>> </%def>
+<%def name="sidebar()"></%def>
 

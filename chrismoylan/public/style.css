@@ -28,7 +28,7 @@
 .float-left{float:left; margin:0 15px 10px 0; clear:left;}
 .float-right:after,
 .float-left:after{content: "."; display: block; height: 0; clear: both;visibility: hidden;}
-.inner{width:750px; margin:0 auto;}
+.inner{width:700px; margin:0 auto;}
 .center {text-align:center;}
 .error-message{border:1px solid red; background:#FFBFBF; padding:2px; margin:10px 0 -1em; display:block;}
 .inline-image{padding:5px; text-align:center; border:1px solid #b6b6b6; background:#d6d6d6;}
@@ -55,9 +55,15 @@ h5 {font-weight:bold;}
 p {font-size:18px; line-height:1.5; margin:0 0 25px;}
 
 /*----- Page Elements -----*/
-#wrapper {width:750px; padding:10px 0 0; margin:65px auto 0;}
+#wrapper {width:700px; padding:10px 0 0; margin:65px auto 0; position:relative;}
 #header {width:100%; height:65px; position:absolute; top:0; background:#111; font-size:24px; font-family:"Gerogia", Times, serif;}
 #footer {padding:10px 0; margin:25px 0 0; border-top:1px dotted #666;}
+#side {width:130px; position:absolute; top:125px; left:-150px; background:#ddd; border:1px solid #b6b6b6;}
+
+#side h2 {text-align:center; color:#222; display:block; height:30px; line-height:30px; border:0; border-bottom:2px solid #ccc; font-size:20px; margin:0; padding:2px 5px;}
+#side ul {list-style:none;}
+#side a {display:block; padding:5px;}
+#side a:hover {background:#ccc; text-decoration:none;}
 
 #logo {display:block; float:left; padding:5px 10px 5px 0; margin:15px 0 0; color:#73ff87;}
 .navigation {list-style:none;}
@@ -105,6 +111,7 @@ fieldset.comment {margin:0 0 1em; padding:10px 10px 5px; border:1px solid #aaa; 
 .comment-form .field_error {width: 400px; border:2px dashed #ff0000; padding:5px; margin:5px 5px 5px 90px; display:block; background:#ffa5a5;}
 
 #hacker-emblem {border:none;}
+
 /*--- Portfolio Styles ---*//*
 .main-image{float:left; margin:0 15px 15px 0;}
 .portfolio{margin:15px 0 0;}

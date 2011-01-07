@@ -17,15 +17,6 @@
 <%inherit file="/common/base.html" />
 
 
-<%def name="top()">
-% if blog.next() is not None:
-  <a href="/journal/${blog.next().id}" style="float:right">${blog.next().title}&nbsp;&nbsp;&gt;</a>
-% endif
-
-% if blog.prev() is not None:
-  <a href="/journal/${blog.prev().id}">&lt;&nbsp;&nbsp;${blog.prev().title}</a>
-% endif
-</%def>
 <%def name="title()">${blog.title}</%def>
 <%def name="breadcrumb()">
 <a href="${url(controller='pages', action='show', id='1')}">Home</a>
@@ -43,7 +34,13 @@ ${blog.title}
   Posted on ${blog.date.strftime("%B %d, %Y")} at ${blog.date.strftime("%I:%M %p").lower()}
 </div>
 
-${self.top()}
+% if blog.next() is not None:
+  <a href="/journal/${blog.next().id}" style="float:right">${blog.next().title}&nbsp;&nbsp;&gt;</a>
+% endif
+
+% if blog.prev() is not None:
+  <a href="/journal/${blog.prev().id}">&lt;&nbsp;&nbsp;${blog.prev().title}</a>
+% endif
 
 <div id="comments" class="comments">
   % if len(blog.comments):

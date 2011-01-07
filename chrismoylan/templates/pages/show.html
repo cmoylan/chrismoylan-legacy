@@ -4,6 +4,19 @@
 <%def name="breadcrumb()">
   <a href="/">Home</a> &nbsp;>>&nbsp; ${page.title}
 </%def>
+<%def name="sidebar()">
+  % if page.id > 1:
+  <div id="side">
+    <h2>About Me</h2>
+    <ul>
+      <li><a href="${url('professional')}">Professional</a></li>
+      <li><a href="${url('music')}">Music</a></li>
+      <li><a href="${url('programming')}">Programming</a></li>
+    </ul>
+  </div>
+  % endif
+</%def>
+
 
 ${page.content | n}
 <div class="meta">Page was last updated on ${page.posted.strftime("%B %d, %Y")} at ${page.posted.strftime("%I:%M %p").lower()}</div>
