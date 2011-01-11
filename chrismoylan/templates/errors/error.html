@@ -1,0 +1,15 @@
+<%inherit file="/common/base.html" />
+
+<%def name="title()">You broke something</%def>
+<%def name="breadcrumb()">
+<a href="/">Home</a> &nbsp;>>&nbsp; Error ${code}
+</%def>
+
+
+<p>Ouch!</p>
+
+<h2>${message}</h2>
+
+<p>Looks like something blew up. It's probably not a big deal. Here is a picture
+of a cat to cheer you up.</p>
+<p><img src="http://files.chrismoylan.com/images/errors/error-cat.jpg" alt="Error Cat" /></p>
