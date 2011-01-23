@@ -15,8 +15,8 @@ class Blog(Base):
     title = Column(Unicode(255), nullable=False)
     entry = Column(UnicodeText, nullable=False)
 
-    comments = relation("Comment", backref="blog", primaryjoin="Blog.id == Comment.referid", cascade="all")
-    tags = relation("Tag", secondary='blogtag', backref="blogs")
+    comments = relation('Comment', backref='blog', primaryjoin='Blog.id == Comment.referid', cascade='all')
+    tags = relation('Tag', secondary='blogtag', backref='blogs')
 
     def __init__(self, *args, **kwargs):
         if len(kwargs) > 0:
@@ -33,8 +33,8 @@ class Blog(Base):
 class BlogTag(Base):
     __tablename__ = 'blogtag'
 
-    blog_id = Column(Integer, ForeignKey('blog.id'), primary_key=True)
-    tag_id = Column(Integer, ForeignKey('tag.id'), primary_key=True)
+    blogid = Column(Integer, ForeignKey('blog.id'), primary_key=True)
+    tagid = Column(Integer, ForeignKey('tag.id'), primary_key=True)
 
     def __init__(self):
         pass
