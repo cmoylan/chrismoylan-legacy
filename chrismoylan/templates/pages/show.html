@@ -1,3 +1,5 @@
+<% import random %>
+
 <%inherit file="/common/base.html" />
 
 <%def name="title()">${page.title}</%def>
@@ -16,7 +18,22 @@
   </div>
   % endif
 </%def>
+<%def name="randomImage()">
+  <% images = [
+    ['http://files.chrismoylan.com/images/page/bridge2.jpg', 'My battlestation'],
+    ['http://files.chrismoylan.com/images/page/me-on-mountains.jpg', 'Hiking on Mt Ranier in 2008'],
+    ['http://files.chrismoylan.com/images/page/me-on-plains.jpg', 'Random summer bikeride'],
+  ]%>
 
+  <% selection = images[random.randrange(len(images))] %>
+
+  <p><img src="${selection[0]}" alt="${selection[1]}" /></p>
+</%def>
+
+
+% if page.id == 1:
+  ${randomImage()}
+% endif
 
 ${page.content | n}
 <div class="meta">Page was last updated on ${page.posted.strftime("%B %d, %Y")} at ${page.posted.strftime("%I:%M %p").lower()}</div>
