@@ -10,6 +10,7 @@ import webhelpers.paginate as paginate
 from chrismoylan.lib.base import BaseController, render
 from chrismoylan.model.meta import Session
 from chrismoylan.model.blog import Blog
+from chrismoylan.model.tag import Tag
 from chrismoylan.controllers.comments import comment_form
 
 log = logging.getLogger(__name__)
@@ -19,7 +20,8 @@ blog_form.configure(
     include = [
         blog_form.title.required(),
         blog_form.date,
-        blog_form.entry.textarea()
+        blog_form.entry.textarea(),
+        blog_form.tags.checkbox().with_html(class_='chkbx_lst'),
     ]
 )
 
@@ -64,6 +66,7 @@ class BlogsController(BaseController):
         }
         return render('/blogs/edit.html', context)
 
+
     def new(self, format='html'):
         """GET /blogs/new: Form to create a new item"""
         # url('new_blog')
@@ -95,7 +98,7 @@ class BlogsController(BaseController):
                 redirect('/blogs/show/%s' % id)
 
             return render('blogs/edit.html', {
-                'blog': edit_form.render(),
+                'blog_form': edit_form.render(),
                 'blog': blog
             })
 
