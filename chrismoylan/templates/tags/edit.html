@@ -1,0 +1,20 @@
+<%inherit file="/common/admin.html" />
+
+<%def name="title()">
+% if tag:
+  Editing ${tag.name}
+% else:
+  New Tag
+% endif
+</%def>
+
+% if tag:
+  <form action="/tags/update/${tag.id}" method='post'>
+% else:
+  <form method="post" action="/tags/create">
+% endif
+    
+  ${tag_form | n}
+  <input type="submit" value="Save" />
+  <a href="/tags/index">Back</a>
+</form>

@@ -1,0 +1,28 @@
+
+<%inherit file="/common/admin.html" />
+
+<%def name="title()">Tags</%def>
+
+% if len(tags):
+  <ul class="tags">
+  <% counter=0 %>
+  % for tag in tags:
+    % if counter % 2 == 0:
+      <li class="odd">
+    % else:
+      <li class="even">
+    % endif
+    ${tag.name}&nbsp;&nbsp;&nbsp;
+    <a href="${url.current(action='edit', id=tag.id)}">edit</a>&nbsp;&nbsp;
+    <a href="/tags/delete/${tag.id}">delete</a>
+    </li>
+    <% counter += 1 %>
+  % endfor
+  </ul>
+
+  <div class="pager">${ tags.pager('$link_previous  ~2~  $link_next') }</div>
+% else:
+  <p>No tags have yet been created.</p>
+% endif
+
+<p><a href="/tags/new">Create tag</a></p>

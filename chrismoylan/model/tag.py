@@ -8,10 +8,13 @@ from chrismoylan.model.meta import Base
 
 class Tag(Base):
     __tablename__ = 'tag'
-    
+
     id = Column(Integer, primary_key=True)
     name = Column(Unicode(100), nullable=False, unique=True)
-    
-    def __init__(self, name):
-        self.name = name
-        
+
+    def __init__(self, *args, **kwargs):
+        if len(kwargs) > 0:
+            self.name = kwargs['name']
+
+    def __repr__(self):
+        return self.name
