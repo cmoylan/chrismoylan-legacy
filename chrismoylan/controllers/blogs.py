@@ -21,7 +21,7 @@ blog_form.configure(
         blog_form.title.required(),
         blog_form.date,
         blog_form.entry.textarea(),
-        blog_form.tags.checkbox().with_html(class_='chkbx_lst'),
+        blog_form.tags.checkbox()#.with_html(class_='chkbx_lst')
     ]
 )
 
@@ -61,19 +61,19 @@ class BlogsController(BaseController):
             Session.add(blog)
             Session.commit()
             redirect('/blogs/show/%s' % blog.id)
-        context = {
+        
+        return render('/blogs/edit.html', {
             'blog_form': create_form.render()
-        }
-        return render('/blogs/edit.html', context)
+        })
 
 
     def new(self, format='html'):
         """GET /blogs/new: Form to create a new item"""
         # url('new_blog')
-        context = {
-            'blog_form': blog_form.render()
-        }
-        return render('/blogs/edit.html', context)
+        new_form = blog_form.bind(Blog, session=Session)
+        return render('/blogs/edit.html', {
+            'blog_form': new_form.render()
+        })
 
 
     @restrict('POST')
@@ -117,12 +117,14 @@ class BlogsController(BaseController):
         blog = Session.query(Blog).filter_by(id = id).first()
         if blog is None:
             abort(404)
+
         if request.params.get('_method') == 'DELETE':
             Session.delete(blog)
             Session.commit()
             context = {'confirm': True}
         else:
             context = {'id': id}
+
         return render('blogs/delete.html', context)
 
 
@@ -159,8 +161,8 @@ class BlogsController(BaseController):
         else:
             redirect('/blogs/new')
         edit_form = blog_form.bind(blog)
-        context = {
+
+        return render('/blogs/edit.html', {
             'blog_form': edit_form.render(),
             'blog': blog
-        }
-        return render('/blogs/edit.html', context)
+        })
