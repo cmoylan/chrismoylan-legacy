@@ -5,7 +5,7 @@ from chrismoylan.model.comment import Comment
 from chrismoylan.model.tag import Tag
 from chrismoylan.model.user import User
 from chrismoylan.model.page import Page
-from chrismoylan.model.portfolio import Portfolio
+from chrismoylan.model.portfolio import Project
 
 def init_model(engine):
     """Call me before using any of the tables or classes in the model"""
