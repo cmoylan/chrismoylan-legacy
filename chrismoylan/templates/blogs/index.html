@@ -1,10 +1,40 @@
 <%inherit file="/common/base.html" />
 
-<%def name="title()">Journal</%def>
+<%def name="title()">
+  % if selected_tag:
+    ${selected_tag}
+  % else:
+    Journal
+  % endif  
+</%def>
 <%def name="breadcrumb()">
-<a href="${url(controller='pages', action='show', id='1')}">Home</a>
-&nbsp;>>&nbsp;
-Journal
+  <a href="${url(controller='pages', action='show', id='1')}">Home</a>
+  &nbsp;>>&nbsp;
+  % if selected_tag:
+    <a href="${url(controller='journal', action='index')}">Journal</a>
+    &nbsp;>>&nbsp;
+    ${selected_tag}
+  % else:
+    Journal
+  % endif
+</%def>
+<%def name="sidebar()">
+  % if len(tags) > 0:
+    <div id="side">
+      <h2>Categories</h2>
+      <ul>
+      % for tag in tags:
+        % if tag == selected_tag:
+          <li class="active">
+        % else:  
+          <li>
+        % endif
+          <a href="${url('journal_categories', id=tag)}">${tag}</a>
+        </li>
+      % endfor
+      </ul>
+    </div>
+  % endif
 </%def>
 
 
@@ -28,3 +58,5 @@ Journal
 % else:
   <p>No blogs have yet been created. <a href="#">add one</a></p>
 % endif
+
+

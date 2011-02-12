@@ -32,7 +32,10 @@ def make_map(config):
 
     # Journal/Blog
     map.connect('journal', '/journal', controller='blogs', action='index')
-    map.connect('/journal/{id}', controller='blogs', action='show')
+    map.connect('journal_categories', '/journal/categories/{id}', controller='blogs', action='categories')
+    map.connect('/journal/{id}', controller='blogs', action='show',
+        requirements=dict(id='\d+')
+    )
     map.connect('/journal/{action}/{id}', controller='blogs')
     # Post comments on blog
     map.connect('/journal/{blogid}/{controller}/{action}',
