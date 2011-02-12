@@ -43,7 +43,50 @@ class BlogsController(BaseController):
             controller = 'blogs',
             action = 'index',
         )
-        return render('/blogs/index.html', {'blogs': blog_paginator})
+
+        tags = Tag.find_all()
+
+        return render('/blogs/index.html', {
+            'blogs': blog_paginator,
+            'tags': tags
+        })
+
+
+    def categories(self, id=None, format='html'):
+        """GET /blogs/categories: All items in the collection"""
+        # url('blogs')
+        if id is None:
+            return 'nothing feels right'
+            #redirect(url(controller='blogs', action='index'))
+
+        # If none are found, redirect to index and flash a message
+        tag_count = Session.query(Tag).filter(Tag.name == id).count()
+        if int(tag_count) < 1:
+            session['flash'] = 'Tag not found.'
+            session.save()
+            redirect(url(controller='blogs', action='index'))
+
+        # Query the blog table for blogs tagged with tag
+        blogs = Session.query(Blog).join('tags').filter(Tag.name == id).order_by(Blog.id.desc())
+
+        # Limit the output to 10 entries per page
+        blog_paginator = paginate.Page(
+          blogs,
+          page = int(request.params.get('page', 1)),
+          items_per_page = 20,
+          controller = 'blogs',
+          action = 'categories',
+        )
+
+        # Get all tags and denote the selected tag
+        tags = Tag.find_all()
+        selected_tag = id
+
+        return render('/blogs/index.html', {
+            'blogs': blog_paginator,
+            'tags': tags,
+            'selected_tag': selected_tag
+        })
 
 
     @restrict('POST')
@@ -61,7 +104,7 @@ class BlogsController(BaseController):
             Session.add(blog)
             Session.commit()
             redirect('/blogs/show/%s' % blog.id)
-        
+
         return render('/blogs/edit.html', {
             'blog_form': create_form.render()
         })

@@ -3,7 +3,8 @@
 from sqlalchemy import Table, Column, ForeignKey
 from sqlalchemy.types import Integer, Unicode, UnicodeText, DateTime, Boolean
 from sqlalchemy.orm import relation
-from chrismoylan.model.meta import Base
+from chrismoylan.model.meta import Base, Session
+from chrismoylan.model.blog import BlogTag
 
 
 class Tag(Base):
@@ -18,3 +19,8 @@ class Tag(Base):
 
     def __repr__(self):
         return self.name
+
+    @classmethod
+    def find_all(self):
+        tags = Session.query(Tag).join(BlogTag).all()
+        return [str(tag.name) for tag in tags]
