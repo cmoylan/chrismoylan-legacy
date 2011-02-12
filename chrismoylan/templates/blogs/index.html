@@ -11,7 +11,7 @@
   <a href="${url(controller='pages', action='show', id='1')}">Home</a>
   &nbsp;>>&nbsp;
   % if selected_tag:
-    <a href="${url(controller='journal', action='index')}">Journal</a>
+    <a href="${url('journal')}">Journal</a>
     &nbsp;>>&nbsp;
     ${selected_tag}
   % else:
