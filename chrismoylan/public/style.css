@@ -57,13 +57,15 @@ p {font-size:18px; line-height:1.5; margin:0 0 25px;}
 /*----- Page Elements -----*/
 #wrapper {width:700px; padding:10px 0 0; margin:65px auto 0; position:relative;}
 #header {width:100%; height:65px; position:absolute; top:0; background:#111; font-size:24px; font-family:"Gerogia", Times, serif;}
+#content {min-height:250px;}
 #footer {padding:10px 0; margin:25px 0 0; border-top:1px dotted #666;}
 #side {width:130px; position:absolute; top:125px; left:-150px; background:#ddd; border:1px solid #b6b6b6;}
 
-#side h2 {text-align:center; color:#222; display:block; height:30px; line-height:30px; border:0; border-bottom:2px solid #ccc; font-size:20px; margin:0; padding:2px 5px;}
+#side h2 {text-align:center; color:#222; display:block; height:30px; line-height:30px; border:0; border-bottom:2px solid #ccc; font-size:18px; margin:0; padding:2px 5px;}
 #side ul {list-style:none;}
 #side a {display:block; padding:5px;}
 #side a:hover {background:#ccc; text-decoration:none;}
+#side .active, #side .active a:hover {background:#bbb;}
 
 #logo {display:block; float:left; padding:5px 10px 5px 0; margin:15px 0 0; color:#73ff87;}
 .navigation {list-style:none;}
@@ -87,7 +89,7 @@ a.selected:hover {background:#ddd;}
 .font-14 {font-size:14px;}
 
 /*----- Journal Styles ------*/
-ul.journal {list-style:none;}
+ul.journal {list-style:none; border:1px solid #ccc; border-width:1px 0;}
 .journal > li {padding: 5px; line-height:100%; font-size: 16px;}
 .journal > li:hover {background:#ccc;}
 .date {float:right;}
