@@ -1,0 +1,18 @@
+<%def name="tag_list(tags, selected_tag)">
+  % if len(tags) > 0:
+    <div id="side">
+      <h2>Categories</h2>
+      <ul>
+      % for tag in tags:
+        % if tag == selected_tag:
+          <li class="active">
+        % else:  
+          <li>
+        % endif
+          <a href="${url('journal_categories', id=tag)}">${tag}</a>
+        </li>
+      % endfor
+      </ul>
+    </div>
+  % endif
+</%def>
