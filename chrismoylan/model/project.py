@@ -6,7 +6,7 @@ from sqlalchemy.orm import relation
 from chrismoylan.model.meta import Base
 
 class Project(Base):
-    __tablename__ = "portfolio"
+    __tablename__ = "project"
 
     id = Column(Integer, primary_key=True)
     title = Column(Unicode(255), nullable=False)
@@ -16,8 +16,17 @@ class Project(Base):
     link = Column(Unicode(255)),
     description = Column(Unicode, nullable=False)
 
-    #tags = relation('Tag', secondary='blogtag', backref='blogs')
+    tags = relation('Tag', secondary='projecttag', backref='projects')
 
     def __init__(self):
         pass
 
+class ProjectTag(Base):
+    __tablename__ = "projecttag"
+
+    id = Column(Integer, primary_key=True)
+    project_id = Column(Integer, ForeignKey('project.id'))
+    tag_id = Column(Integer, ForeignKey('tag.id'))
+
+    def __init__(self):
+        pass
