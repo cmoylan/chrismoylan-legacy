@@ -2,3 +2,6 @@ data/*
 *.pyc
 .redcar/
 *.swp
+*.log
+*.ini
+chrismoylan.egg-info/
