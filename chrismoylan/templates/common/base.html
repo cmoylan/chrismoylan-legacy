@@ -27,7 +27,7 @@
       <div id="footer">
         <ul class="inline-menu left font-14">
           <li><a href="${url('journal')}">journal</a> - </li>
-          <!--li><a href="#">projects</a> - </li-->
+          <li><a href="${url('projects')}">projects</a></li>
           <li><a href="${url('about')}">about</a></li>
         </ul>
         % if 'user' in session:
@@ -50,12 +50,11 @@
     <!-- Position atop content -->
     <div id="header">
       <div class="inner">
-##        <!--a href="${url(controller='pages', action='show', id='1')}" id="logo" title="">chrismoylan</a-->
         <a href="${url('home')}" id="logo" title="">chrismoylan</a>
         <ul class="primary navigation" id="navigation">
           <!--li><a href="/journal" class="selected">journal</a></li-->
           <li><a href="${url('journal')}">journal</a></li>
-          <!--li><a href="#">projects</a></li-->
+          <li><a href="${url('projects')}">projects</a></li>
           <li><a href="${url('about')}">about</a></li> 
         </ul>
         <div class="none">

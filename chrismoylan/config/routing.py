@@ -45,6 +45,9 @@ def make_map(config):
         requirements=dict(blogid='\d+', id='\d+')
     )
 
+    # Project section
+    map.connect('projects', '/projects', controller='projects', action='index')
+
     # TODO add legacy routes so you don't fuck up google ranking
 
     map.connect('/{controller}/{action}')

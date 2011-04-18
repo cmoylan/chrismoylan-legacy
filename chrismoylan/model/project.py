@@ -30,3 +30,8 @@ class ProjectTag(Base):
 
     def __init__(self):
         pass
+
+
+
+
+#TODO: You need to change the database around to make portfolio into projects!!!!

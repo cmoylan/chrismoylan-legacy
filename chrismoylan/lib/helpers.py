@@ -8,3 +8,5 @@ available to Controllers. This module is available to templates as 'h'.
 from routes import url_for
 from webhelpers.html import *
 import webhelpers.paginate as paginate
+
+from webhelpers.html.tags import *

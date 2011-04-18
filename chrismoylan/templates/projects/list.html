@@ -1,0 +1,27 @@
+<%inherit file="/common/admin.html" />
+
+<%def name="title()">Projects</%def>
+
+% if len(projects):
+  <ul class="projects">
+  <% counter=0 %>
+  % for project in projects:
+    % if counter % 2 == 0:
+      <li class="odd">
+    % else:
+      <li class="even">
+    % endif
+    ${project.title}&nbsp;&nbsp;&nbsp;
+    <a href="${url.current(action='edit', id=project.id)}">edit</a>&nbsp;&nbsp;
+    <a href="/projects/delete/${project.id}">delete</a>
+    </li>
+    <% counter += 1 %>
+  % endfor
+  </ul>
+
+  <div class="pager">${ projects.pager('$link_previous  ~2~  $link_next') }</div>
+% else:
+  <p>No projects have yet been created.</p>
+% endif
+
+<p><a href="/projects/new">Create project</a></p>

@@ -1,0 +1,21 @@
+
+<%inherit file="/common/admin.html" />
+
+<%def name="title()">
+% if project:
+  Editing ${project.title}
+% else:
+  New project
+% endif
+</%def>
+
+% if project:
+  <form action="/projects/update/${project.id}" method='post'>
+% else:
+  <form method="post" action="/projects/create">
+% endif
+    
+  ${project_form | n}
+  <input type="submit" value="Save" />
+  <a href="/projects/list">Back</a>
+</form>
