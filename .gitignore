@@ -5,3 +5,4 @@ data/*
 *.log
 *.ini
 chrismoylan.egg-info/
+fabfile/envs.py
