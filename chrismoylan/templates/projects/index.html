@@ -26,18 +26,27 @@
 
 % if len(projects):
   <ul class="projects">
-  <% counter=0 %>
+  <% counter=1 %>
   % for project in projects:
-    % if counter % 2 == 0:
-      <li class="odd"> 
+    % if counter == 1:
+      <li class="leftEdge">
+    % elif counter == 4:
+      <li class="rightEdge">
     % else:
-      <li class="even">
+      <li>
     % endif
+
     ## TODO: Move reference to file.cm.com to a global variable or config file
-    ${h.image('http://files.chrismoylan.com' + project.indexImage, project.title)}
-    <a href="${url.current(action='show', id=project.id)}">${project.title}</a>
+    <a href="${url.current(action='show', id=project.id)}">
+      ${h.image('http://files.chrismoylan.com' + project.indexImage, project.title)}
+      <span class="title">${project.title}</span>
+    </a>
     </li>
-    <% counter += 1 %>
+    % if counter == 4:
+      <% counter = 1 %>
+    % else:
+      <% counter += 1 %>
+    % endif
   % endfor
   </ul>
 
@@ -46,4 +55,4 @@
   <p>No projects have yet been created.</p>
 % endif
 
-
+<div class="clear"></div>

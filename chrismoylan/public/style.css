@@ -114,7 +114,17 @@ fieldset.comment {margin:0 0 1em; padding:10px 10px 5px; border:1px solid #aaa; 
 
 #hacker-emblem {border:none;}
 
-/*--- Portfolio Styles ---*//*
+/*--- Portfolio Styles ---*/
+ul.projects {list-style:none;}
+.projects li {width: 150px; height:150px; float:left; margin:10px 16px;}
+.projects li.leftEdge {margin-left:0;}
+.projects li.rightEdge {margin-right:0}
+.projects li a {text-align:center;}
+.projects li a:hover .title {text-decoration:underline;}
+.projects li img {border:0;}
+.projects .title {display:block; padding:5px;}
+
+/*
 .main-image{float:left; margin:0 15px 15px 0;}
 .portfolio{margin:15px 0 0;}
 .portfolio .link{margin:0 0 15px;}
