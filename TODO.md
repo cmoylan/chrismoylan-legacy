@@ -8,3 +8,6 @@ TODO
 - tagging for projects
 - email when comment is posted
 
+5-20-11
+------------------------
+- Force border:0 on project index images
