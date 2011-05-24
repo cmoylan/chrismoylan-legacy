@@ -47,9 +47,10 @@ def make_map(config):
 
     # Project section
     map.connect('projects', '/projects', controller='projects', action='index')
+    map.connect('project_categories', '/projects/categories/{id}', controller='projects', action='categories')
 
-    # TODO add legacy routes so you don't fuck up google ranking
 
+    # Default routes
     map.connect('/{controller}/{action}')
     map.connect('/{controller}/{action}/{id}')
 

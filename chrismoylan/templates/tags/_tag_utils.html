@@ -1,4 +1,4 @@
-<%def name="tag_list(tags, selected_tag)">
+<%def name="tag_list(route, tags, selected_tag)">
   % if len(tags) > 0:
     <div id="side">
       <h2>Categories</h2>
@@ -9,7 +9,7 @@
         % else:  
           <li>
         % endif
-          <a href="${url('journal_categories', id=tag)}">${tag}</a>
+          <a href="${url(route, id=tag)}">${tag}</a>
         </li>
       % endfor
       </ul>

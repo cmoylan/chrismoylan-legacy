@@ -10,6 +10,7 @@ import webhelpers.paginate as paginate
 from chrismoylan.lib.base import BaseController, render
 from chrismoylan.model.meta import Session
 from chrismoylan.model.project import Project
+from chrismoylan.model.tag import Tag
 
 log = logging.getLogger(__name__)
 
@@ -33,10 +34,16 @@ class ProjectsController(BaseController):
             controller = 'projects',
             action = 'index',
         )
-        # TODO tags!
+
+        tags = Tag.find_all()
+
         return render('projects/index.html', {
-            'projects': project_paginator
+            'projects': project_paginator,
+            'tags': tags
         })
+
+    def categories(self, id=None, format='html'):
+        pass
 
 
     @restrict('POST')

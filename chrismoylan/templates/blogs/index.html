@@ -1,5 +1,5 @@
 <%inherit file="/common/base.html" />
-<%namespace name="tag_utils" file="_tags.html" />
+<%namespace name="tag_utils" file="/tags/_tag_utils.html" />
 
 <%def name="title()">
   % if selected_tag:
@@ -20,7 +20,7 @@
   % endif
 </%def>
 <%def name="sidebar()">
-  ${tag_utils.tag_list(tags, selected_tag)}
+  ${tag_utils.tag_list('journal_categories', tags, selected_tag)}
 </%def>
 
 
