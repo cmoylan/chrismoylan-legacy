@@ -1,0 +1,47 @@
+<%inherit file="/common/base.html" />
+
+
+<%def name="title()">${project.title}</%def>
+<%def name="breadcrumb()">
+<a href="${url(controller='pages', action='show', id='1')}">Home</a>
+&nbsp;>>&nbsp;
+<a href="${url(controller='projects', action='index')}">Projects</a>
+&nbsp;>>&nbsp;
+${project.title}
+</%def>
+
+
+<div class="portfolio content">
+<div class="main-image">
+<a href="${project.fullImage}">${h.image(project.thumbImage, project.title)}</a>
+</div>
+
+<div class="link">
+Live Site:
+<a href="${project.link}">${project.link}</a>
+</div>
+
+${project.description | n}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##<div class="entry content">
+##  ${projectblog.entry}
+##</div>
+##<div class="meta">
+##  Posted on ${blog.date.strftime("%B %d, %Y")} at ${blog.date.strftime("%I:%M %p").lower()}
+##</div>
+
