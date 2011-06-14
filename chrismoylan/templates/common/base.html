@@ -4,8 +4,9 @@
   <head profile="http://www.w3.org/2000/08/w3c-synd/#">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>${self.title()} | chrismoylan</title>
-      <link href="/style.css" media="screen" rel="stylesheet" type="text/css" />
-##      <!-- TODO possibly make that a stylesheet link -->
+      <link rel="stylesheet" href="/style.css" media="screen" type="text/css" />
+      <link rel='stylesheet' media='screen and (max-width: 1030px)' href='/700.css' />
+      <link rel='stylesheet' media='screen and (min-width: 1030px)' href='/1000.css' />
   </head>
 
   <body>
@@ -23,6 +24,10 @@
       </div>
       <!--div class="meta">Page was last updated on September 13, 2010 at 01:25 am</div-->
 
+      <!-- Position aside content -->
+      % if self.sidebar():
+        ${self.sidebar()}
+      % endif
 
       <div id="footer">
         <ul class="inline-menu left font-14">
@@ -41,10 +46,6 @@
           </a>
         </div>
       </div>
-      <!-- Position aside content -->
-      % if self.sidebar():
-        ${self.sidebar()}
-      % endif
     </div> <!-- End Wrapper -->
 
     <!-- Position atop content -->
