@@ -1,0 +1,5 @@
+#side h2 {color:#222; display:block; height:30px; line-height:30px; border:0; border-bottom:2px solid #ccc; font-size:20px; margin:5px 0; padding:5px 0;}
+#side ul {list-style:none;}
+#side li {float:left; padding:0 10px 0 0;}
+#side ul:after {content: "."; display: block; height: 0; clear: both; visibility: hidden;}
+
