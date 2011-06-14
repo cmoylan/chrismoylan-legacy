@@ -9,7 +9,7 @@ import webhelpers.paginate as paginate
 
 from chrismoylan.lib.base import BaseController, render
 from chrismoylan.model.meta import Session
-from chrismoylan.model.project import Project
+from chrismoylan.model.project import Project, ProjectTag
 from chrismoylan.model.tag import Tag
 
 log = logging.getLogger(__name__)
@@ -35,7 +35,7 @@ class ProjectsController(BaseController):
             action = 'index',
         )
 
-        tags = Tag.find_all()
+        tags = Project.find_all_tags()
 
         return render('projects/index.html', {
             'projects': project_paginator,
@@ -44,6 +44,21 @@ class ProjectsController(BaseController):
 
     def categories(self, id=None, format='html'):
         pass
+
+
+    def show(self, id=None, format='html'):
+        """GET /projects/id: Show a specific item"""
+        # url('project', id=ID)
+        if id is None:
+            return redirect(url(controller='projects', action='index'))
+
+        project_q = Session.query(Project).filter_by(id=int(id)).first()
+
+        if project_q is None:
+            # TODO FLash an alert, redirect to index
+            abort(404)
+
+        return render('/projects/show.html', {'project': project_q})
 
 
     @restrict('POST')

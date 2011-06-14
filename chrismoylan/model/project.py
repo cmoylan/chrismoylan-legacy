@@ -3,7 +3,7 @@
 from sqlalchemy import Table, Column, ForeignKey
 from sqlalchemy.types import Integer, Unicode, UnicodeText, DateTime, Boolean
 from sqlalchemy.orm import relation
-from chrismoylan.model.meta import Base
+from chrismoylan.model.meta import Base, Session
 
 class Project(Base):
     __tablename__ = "project"
@@ -21,17 +21,22 @@ class Project(Base):
     def __init__(self):
         pass
 
+    @classmethod
+    def find_all_tags(self):
+        projects = Session.query(Project).all()
+        # Use a set to only get unique results
+        return set([project.tags[0] for project in projects])
+
+
 class ProjectTag(Base):
     __tablename__ = "projecttag"
 
     id = Column(Integer, primary_key=True)
-    project_id = Column(Integer, ForeignKey('project.id'))
-    tag_id = Column(Integer, ForeignKey('tag.id'))
+    projectid = Column(Integer, ForeignKey('project.id'))
+    tagid = Column(Integer, ForeignKey('tag.id'))
 
     def __init__(self):
         pass
-
-
 
 
 #TODO: You need to change the database around to make portfolio into projects!!!!

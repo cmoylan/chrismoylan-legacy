@@ -44,7 +44,7 @@ class BlogsController(BaseController):
             action = 'index',
         )
 
-        tags = Tag.find_all()
+        tags = Blog.find_all_tags()
 
         return render('/blogs/index.html', {
             'blogs': blog_paginator,
@@ -79,7 +79,7 @@ class BlogsController(BaseController):
         )
 
         # Get all tags and denote the selected tag
-        tags = Tag.find_all()
+        tags = Blog.find_all_tags()
         selected_tag = id
 
         return render('/blogs/index.html', {

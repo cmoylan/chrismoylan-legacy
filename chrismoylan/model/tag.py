@@ -4,7 +4,7 @@ from sqlalchemy import Table, Column, ForeignKey
 from sqlalchemy.types import Integer, Unicode, UnicodeText, DateTime, Boolean
 from sqlalchemy.orm import relation
 from chrismoylan.model.meta import Base, Session
-from chrismoylan.model.blog import BlogTag
+#from chrismoylan.model.blog import BlogTag
 
 
 class Tag(Base):
@@ -22,5 +22,5 @@ class Tag(Base):
 
     @classmethod
     def find_all(self):
-        tags = Session.query(Tag).join(BlogTag).all()
+        tags = Session.query(Tag).all()
         return [str(tag.name) for tag in tags]

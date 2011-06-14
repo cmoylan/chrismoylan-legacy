@@ -4,6 +4,7 @@ from sqlalchemy import Table, Column, ForeignKey, desc
 from sqlalchemy.types import Integer, Unicode, UnicodeText, DateTime, Boolean
 from sqlalchemy.orm import relation
 from chrismoylan.model.meta import Base, Session
+from chrismoylan.model.tag import Tag
 from datetime import datetime
 
 
@@ -29,6 +30,12 @@ class Blog(Base):
 
     def prev(self):
         return Session.query(Blog).filter(Blog.id < self.id).order_by(desc(Blog.id)).first()
+
+    @classmethod
+    def find_all_tags(self):
+        tags = Session.query(Tag).join(BlogTag).all()
+        return [str(tag.name) for tag in tags]
+
 
 class BlogTag(Base):
     __tablename__ = 'blogtag'
