@@ -6,7 +6,7 @@
     ${selected_tag}
   % else:
     Journal
-  % endif  
+  % endif
 </%def>
 <%def name="breadcrumb()">
   <a href="${url(controller='pages', action='show', id='1')}">Home</a>
@@ -29,9 +29,9 @@
   <% counter=0 %>
   % for blog in blogs:
     % if counter % 2 == 0:
-      <li class="odd"> 
+      <li class="odd">
     % else:
-      <li class="even"> 
+      <li class="even">
     % endif
     <a href="${url.current(action='show', id=blog.id)}">${blog.title}</a>
       <span class="date">${blog.date.strftime("%d %b %Y")}</span>
