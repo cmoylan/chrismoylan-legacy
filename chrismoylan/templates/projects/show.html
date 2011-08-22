@@ -11,14 +11,9 @@ ${project.title}
 </%def>
 
 
-<div class="portfolio content">
-<div class="main-image">
-<a href="${project.fullImage}">${h.image(project.thumbImage, project.title)}</a>
-</div>
-
-<div class="link">
-Live Site:
-<a href="${project.link}">${project.link}</a>
+<div class="project-link">
+  <strong>Site:</strong>
+  <a href="${project.link}">${project.link}</a>
 </div>
 
 ${project.description | n}

@@ -113,6 +113,7 @@ ul.projects {list-style:none; border:1px solid #ccc; border-width:1px 0;}
 .projects li {padding:5px;}
 .projects li a {text-align:center;}
 .projects li:hover {background:#ccc;}
+.project-link{font-size:18px; line-height:1.5;}
 
 
 /*--- Photo Styles ---*//*
