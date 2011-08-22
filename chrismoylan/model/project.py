@@ -13,7 +13,7 @@ class Project(Base):
     thumbImage = Column(Unicode(255))
     fullImage = Column(Unicode(255))
     indexImage = Column(Unicode(255))
-    link = Column(Unicode(255)),
+    link = Column(Unicode(255))
     description = Column(Unicode, nullable=False)
 
     tags = relation('Tag', secondary='projecttag', backref='projects')
