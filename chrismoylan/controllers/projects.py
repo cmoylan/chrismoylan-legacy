@@ -50,9 +50,42 @@ class ProjectsController(BaseController):
             'tags': tags
         })
 
-    def categories(self, id=None, format='html'):
-        pass
 
+    def categories(self, id=None, format='html'):
+        """GET /projects/categories: All items in the collection"""
+        # url('projects/catagories')
+        if id is None:
+            return 'nothing feels right'
+            #redirect(url(controller='blogs', action='index'))
+
+        # If none are found, redirect to index and flash a message
+        tag_count = Session.query(Tag).filter(Tag.name == id).count()
+        if int(tag_count) < 1:
+            session['flash'] = 'Tag not found.'
+            session.save()
+            redirect(url(controller='projects', action='index'))
+
+        # Query the project table for blogs tagged with tag
+        projects = Session.query(Project).join('tags').filter(Tag.name == id).order_by(Project.id.desc())
+
+        # Limit the output to 10 entries per page
+        project_paginator = paginate.Page(
+          projects,
+          page = int(request.params.get('page', 1)),
+          items_per_page = 15,
+          controller = 'projects',
+          action = 'categories',
+        )
+
+        # Get all tags and denote the selected tag
+        tags = Project.find_all_tags()
+        selected_tag = id
+
+        return render('/projects/index.html', {
+            'projects': project_paginator,
+            'tags': tags,
+            'selected_tag': selected_tag
+        })
 
     def show(self, id=None, format='html'):
         """GET /projects/id: Show a specific item"""
