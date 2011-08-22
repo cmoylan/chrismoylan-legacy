@@ -15,6 +15,14 @@ from chrismoylan.model.tag import Tag
 log = logging.getLogger(__name__)
 
 project_form = FieldSet(Project)
+project_form.configure(
+    include = [
+        project_form.title.required(),
+        project_form.link,
+        project_form.description.textarea().required(),
+        project_form.tags
+    ]
+)
 
 class ProjectsController(BaseController):
     """REST Controller styled on the Atom Publishing Protocol"""
