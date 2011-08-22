@@ -6,7 +6,7 @@
     ${selected_tag}
   % else:
     Projects
-  % endif  
+  % endif
 </%def>
 <%def name="breadcrumb()">
   <a href="${url(controller='pages', action='show', id='1')}">Home</a>
@@ -26,27 +26,17 @@
 
 % if len(projects):
   <ul class="projects">
-  <% counter=1 %>
+  <% counter = 0 %>
   % for project in projects:
-    % if counter == 1:
-      <li class="leftEdge">
-    % elif counter == 4:
-      <li class="rightEdge">
+    % if counter % 2 == 0:
+    <li class="odd">
     % else:
-      <li>
+    <li class="even">
     % endif
-
-    ## TODO: Move reference to file.cm.com to a global variable or config file
-    <a href="${url.current(action='show', id=project.id)}">
-      ${h.image('http://files.chrismoylan.com' + project.indexImage, project.title)}
-      <span class="title">${project.title}</span>
-    </a>
+      <a href="${url.current(action='show', id=project.id)}">${project.title}</a>
     </li>
-    % if counter == 4:
-      <% counter = 1 %>
-    % else:
-      <% counter += 1 %>
-    % endif
+
+    <% counter += 1 %>
   % endfor
   </ul>
 

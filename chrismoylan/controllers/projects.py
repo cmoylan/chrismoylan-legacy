@@ -136,7 +136,7 @@ class ProjectsController(BaseController):
         """GET /projects/id/edit: Form to edit an existing item"""
         # url('edit_project', id=ID)
         if id is not None:
-            project = Session.query(project).filter_by(id = id).first()
+            project = Session.query(Project).filter_by(id = id).first()
             print project
             if project is None:
                 abort(404)
