@@ -130,6 +130,7 @@ fieldset.comment {margin:0 0 1em; padding:10px 10px 5px; border:1px solid #aaa; 
 
 
 /*----- Pygments Styles -----*/
+code {border:1px solid #bbb; background:#eee; padding:0 3px;}
 p.highlight-after {margin-bottom: 0;}
 .highlight {border:1px solid #bbb; background:#eee; padding: 10px; margin: 5px 0 25px; font-size:14px; line-height:1.1;}
 
